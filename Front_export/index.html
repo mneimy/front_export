@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HissabPro — Comptabilité Cloud Maroc | Logiciel PCM Conforme</title>
+    <meta name="description" content="Logiciel de comptabilité marocain conforme au PCM. Plans client à partir de 99 MAD/mois. Facturation ICE/IF/RC, TVA SIMPL-DGI, liasses fiscales. Cabinets partenaires : 49 DH/dossier.">
+    <meta name="keywords" content="logiciel comptabilité maroc, comptabilité cloud maroc, PCM maroc, facturation maroc, TVA SIMPL, cabinet comptable maroc, HissabPro, logiciel comptable PME maroc">
+    <link rel="canonical" href="https://hissabpro.polsia.app">
+    <meta property="og:title" content="HissabPro — Comptabilité Cloud pour le Maroc">
+    <meta property="og:description" content="Conforme au PCM. Plans client à partir de 99 MAD/mois. Facturation, TVA SIMPL, liasses fiscales. Cabinets partenaires bienvenues.">
+    <meta property="og:url" content="https://hissabpro.polsia.app">
+    <meta property="og:site_name" content="HissabPro">
+    <meta property="og:locale" content="fr_MA">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="HissabPro — Comptabilité Cloud pour le Maroc">
+    <meta name="twitter:description" content="Conforme au PCM. Plans client à partir de 99 MAD/mois. Facturation, TVA SIMPL, liasses fiscales.">
+    <meta property="og:image" content="https://hissabpro.polsia.app/logo.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:image" content="https://hissabpro.polsia.app/logo.svg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "HissabPro",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Accounting Software",
+      "operatingSystem": "Web",
+      "description": "Logiciel SaaS de comptabilité et gestion financière pour les PME marocaines, conforme au Plan Comptable Marocain (PCM). Facturation ICE/IF/RC, TVA SIMPL-DGI, liasses fiscales, balance générale, grand livre.",
+      "url": "https://hissabpro.polsia.app",
+      "inLanguage": "fr",
+      "featureList": "Facturation conforme ICE/IF/RC, Déclaration TVA SIMPL-DGI, Balance générale, Grand livre, Bilan comptable, Liasses fiscales, Gestion multi-dossiers cabinet, Plan Comptable Marocain (PCM)",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Starter",
+          "price": "99",
+          "priceCurrency": "MAD",
+          "billingIncrement": "P1M",
+          "description": "Accès basique — dépôt documents, consultation"
+        },
+        {
+          "@type": "Offer",
+          "name": "Standard",
+          "price": "199",
+          "priceCurrency": "MAD",
+          "billingIncrement": "P1M",
+          "description": "Fonctionnalités avancées — suivi détaillé, rapports, collaboration cabinet"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium",
+          "price": "499",
+          "priceCurrency": "MAD",
+          "billingIncrement": "P1M",
+          "description": "Full autonomie — comptabilité avancée, export SIMPL-IS/TVA, automatisation"
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "HissabPro",
+        "url": "https://hissabpro.polsia.app"
+      }
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/design-tokens.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --emerald: #0d9488;
+            --emerald-light: #14b8a6;
+            --emerald-dark: #0f766e;
+            --sand: #f8fafc;
+            --sand-dark: #f1f5f9;
+            --charcoal: #0f172a;
+            --slate: #334155;
+            --muted: #64748b;
+            --gold: #d4a843;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--charcoal);
+            background: var(--sand);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.2rem 2rem;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--emerald);
+        }
+
+        .nav-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--emerald);
+            background: rgba(13, 148, 136, 0.08);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-cta {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            background: var(--emerald);
+            padding: 0.55rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--emerald-dark);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--slate);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: var(--emerald); }
+
+        .nav-login {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--slate);
+            text-decoration: none;
+        }
+
+        .nav-login:hover { color: var(--emerald); }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--emerald);
+            background: white;
+            padding: 0.85rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            border: 2px solid var(--emerald);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(13, 148, 136, 0.06);
+        }
+
+        @media (max-width: 768px) {
+            .nav-link { display: none; }
+            .nav-login { display: none; }
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background: var(--emerald);
+            padding: 0.85rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--emerald-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -300px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(13,148,136,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,168,67,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 em {
+            font-style: normal;
+            color: var(--emerald);
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--slate);
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--emerald);
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.2rem;
+        }
+
+        /* HERO VISUAL */
+        .hero-visual {
+            position: relative;
+        }
+
+        .dashboard-preview {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--sand-dark);
+        }
+
+        .dash-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+        }
+
+        .dash-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(13,148,136,0.1);
+            color: var(--emerald);
+            padding: 0.25rem 0.6rem;
+            border-radius: 8px;
+        }
+
+        .dash-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .dash-row:last-child { border: none; }
+
+        .dash-account {
+            font-size: 0.85rem;
+            color: var(--slate);
+        }
+
+        .dash-amount {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .dash-amount.positive { color: var(--emerald); }
+        .dash-amount.negative { color: #dc2626; }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .float-tva {
+            top: -20px;
+            right: -30px;
+            z-index: 2;
+        }
+
+        .float-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .float-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--emerald);
+        }
+
+        /* SECTION COMMON */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--emerald);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--slate);
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* PROBLEM */
+        .problem {
+            background: var(--charcoal);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(13,148,136,0.05) 0%, transparent 50%, rgba(212,168,67,0.03) 100%);
+        }
+
+        .problem .section-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .problem .section-title { color: white; }
+        .problem .section-subtitle { color: rgba(255,255,255,0.7); }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .pain-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: background 0.3s;
+        }
+
+        .pain-card:hover {
+            background: rgba(255,255,255,0.07);
+        }
+
+        .pain-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .pain-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: white;
+        }
+
+        .pain-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* FEATURES */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+        }
+
+        .feature-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--emerald);
+            background: rgba(13,148,136,0.08);
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.3px;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--slate);
+        }
+
+        /* COMPLIANCE */
+        .compliance {
+            background: linear-gradient(180deg, var(--sand) 0%, white 100%);
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .compliance-list {
+            list-style: none;
+        }
+
+        .compliance-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .compliance-list li:last-child { border: none; }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--emerald);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .compliance-text strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .compliance-text span {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .compliance-visual {
+            background: var(--charcoal);
+            border-radius: 16px;
+            padding: 2.5rem;
+            color: white;
+        }
+
+        .comp-header {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .tva-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.8rem;
+        }
+
+        .tva-item {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1rem 0.5rem;
+            text-align: center;
+        }
+
+        .tva-rate {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--emerald-light);
+        }
+
+        .tva-label {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* CLOSING */
+        .closing {
+            text-align: center;
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, white 0%, var(--sand) 100%);
+        }
+
+        .closing h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.15;
+        }
+
+        .closing h2 em {
+            font-style: normal;
+            color: var(--emerald);
+        }
+
+        .closing p {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(0,0,0,0.04);
+        }
+
+        footer a {
+            color: var(--emerald);
+            text-decoration: none;
+        }
+
+        /* PRICING */
+        .pricing {
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(13,148,136,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-card {
+            background: var(--sand);
+            border-radius: 20px;
+            padding: 2.2rem 2rem;
+            border: 1px solid rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .pricing-card.featured {
+            background: var(--charcoal);
+            border: 2px solid var(--emerald);
+            box-shadow: 0 16px 50px rgba(13,148,136,0.2);
+            position: relative;
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(13,148,136,0.25);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--emerald);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .plan-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .pricing-card.featured .plan-name {
+            color: var(--emerald-light);
+        }
+
+        .plan-price-row {
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--charcoal);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .pricing-card.featured .plan-price {
+            color: white;
+        }
+
+        .plan-price .plan-period {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--muted);
+            letter-spacing: 0;
+            vertical-align: baseline;
+        }
+
+        .pricing-card.featured .plan-period {
+            color: rgba(255,255,255,0.55);
+        }
+
+        .plan-dossiers {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .pricing-card.featured .plan-dossiers {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .plan-divider {
+            height: 1px;
+            background: rgba(0,0,0,0.06);
+            margin: 1.5rem 0;
+        }
+
+        .pricing-card.featured .plan-divider {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex: 1;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.87rem;
+            color: var(--slate);
+            padding: 0.35rem 0;
+        }
+
+        .pricing-card.featured .plan-features li {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .plan-features li .check {
+            color: var(--emerald);
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .pricing-card.featured .plan-features li .check {
+            color: var(--emerald-light);
+        }
+
+        .plan-cta {
+            display: block;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.85rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-top: auto;
+        }
+
+        .plan-cta.primary {
+            background: var(--emerald);
+            color: white;
+        }
+
+        .plan-cta.primary:hover {
+            background: var(--emerald-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(13,148,136,0.4);
+        }
+
+        .plan-cta.outline {
+            border: 2px solid rgba(0,0,0,0.1);
+            color: var(--charcoal);
+            background: white;
+        }
+
+        .plan-cta.outline:hover {
+            border-color: var(--emerald);
+            color: var(--emerald);
+        }
+
+        .pricing-card.featured .plan-cta.outline {
+            border-color: rgba(255,255,255,0.2);
+            color: white;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .pricing-card.featured .plan-cta.outline:hover {
+            border-color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.12);
+        }
+
+        /* CABINET PARTNER SECTION */
+        .cabinet-partner {
+            background: #f0fdfa;
+            border-top: 1px solid rgba(13,148,136,0.1);
+            border-bottom: 1px solid rgba(13,148,136,0.1);
+        }
+
+        .cabinet-partner-inner {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .cabinet-benefits {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .cabinet-benefits li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid rgba(13,148,136,0.1);
+        }
+
+        .cabinet-benefits li:last-child { border: none; }
+
+        .benefit-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .cabinet-benefits strong {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            margin-bottom: 0.15rem;
+        }
+
+        .cabinet-benefits span {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .cabinet-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.2rem;
+            box-shadow: 0 12px 40px rgba(13,148,136,0.1);
+            border: 1px solid rgba(13,148,136,0.15);
+        }
+
+        .cabinet-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--sand-dark);
+        }
+
+        .cabinet-card-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+        }
+
+        .cabinet-card-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: rgba(13,148,136,0.1);
+            color: var(--emerald);
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .cabinet-pricing-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13,148,136,0.05);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cabinet-pricing-label {
+            font-size: 0.85rem;
+            color: var(--slate);
+        }
+
+        .cabinet-pricing-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--emerald);
+        }
+
+        .cabinet-feature-list {
+            margin-bottom: 1.5rem;
+        }
+
+        .cf-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.87rem;
+            color: var(--slate);
+            padding: 0.45rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .cf-item:last-child { border: none; }
+
+        .cf-check {
+            color: var(--emerald);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .cabinet-cta-note {
+            font-size: 0.78rem;
+            color: var(--muted);
+            text-align: center;
+            padding: 0.6rem;
+            background: var(--sand);
+            border-radius: 8px;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 580px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            background: var(--sand-dark);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover { background: #e2e8f0; }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.4rem;
+        }
+
+        .modal-header p {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            background: var(--sand);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.65rem 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--emerald);
+            background: white;
+        }
+
+        .form-group textarea { resize: vertical; }
+
+        .form-group { margin-bottom: 1rem; }
+
+        .form-msg-success {
+            background: rgba(13,148,136,0.08);
+            border: 1px solid rgba(13,148,136,0.2);
+            color: var(--emerald);
+            border-radius: 10px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .form-msg-error {
+            background: rgba(220,38,38,0.06);
+            border: 1px solid rgba(220,38,38,0.2);
+            color: #dc2626;
+            border-radius: 10px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .pain-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cabinet-partner-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-box {
+                padding: 1.5rem;
+            }
+
+            .compliance-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tva-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .float-tva {
+                right: -10px;
+                top: -10px;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">Hissab<span>Pro</span></a>
+            <div class="nav-right">
+                <a href="/logiciel-comptabilite-maroc" class="nav-link">Produit</a>
+                <a href="#tarifs" class="nav-link">Tarifs</a>
+                <a href="#" class="nav-link" onclick="event.preventDefault();openPartnerModal()">Cabinets</a>
+                <a href="/login" class="nav-login">Connexion</a>
+                <a href="/onboarding" class="nav-cta">Commencer &rarr;</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h1>La comptabilit&eacute; marocaine m&eacute;rite <em>mieux qu'Excel</em></h1>
+                <p>HissabPro centralise comptabilit&eacute;, facturation, tr&eacute;sorerie et d&eacute;clarations fiscales dans une seule plateforme cloud. Conforme au Plan Comptable Marocain, d&egrave;s le premier jour.</p>
+
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;">
+                    <a href="/onboarding" class="btn-primary">Commencer gratuitement &rarr;</a>
+                    <a href="/logiciel-comptabilite-maroc" class="btn-secondary">Voir le logiciel</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">300K+</div>
+                        <div class="stat-label">Entreprises actives</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Taux de TVA g&eacute;r&eacute;s</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Cloud natif</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="floating-card float-tva">
+                        <div class="float-label">TVA T1 2026</div>
+                        <div class="float-value">24 850 MAD</div>
+                    </div>
+                    <div class="dash-header">
+                        <span class="dash-title">Journal des &Eacute;critures</span>
+                        <span class="dash-badge">PCM Conforme</span>
+                    </div>
+                    <div class="dash-row">
+                        <span class="dash-account">6111 - Achats de marchandises</span>
+                        <span class="dash-amount negative">-45 200 MAD</span>
+                    </div>
+                    <div class="dash-row">
+                        <span class="dash-account">7111 - Ventes de marchandises</span>
+                        <span class="dash-amount positive">+128 400 MAD</span>
+                    </div>
+                    <div class="dash-row">
+                        <span class="dash-account">3421 - Clients</span>
+                        <span class="dash-amount positive">+67 300 MAD</span>
+                    </div>
+                    <div class="dash-row">
+                        <span class="dash-account">5141 - Banques</span>
+                        <span class="dash-amount positive">+234 100 MAD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="section-inner">
+            <span class="section-label">Le probl&egrave;me</span>
+            <h2 class="section-title">La DGI impose le digital.<br>Les solutions existantes ne suivent pas.</h2>
+            <p class="section-subtitle">Depuis 2025, la comptabilit&eacute; digitale est obligatoire au Maroc. Les entreprises non conformes risquent jusqu'&agrave; 50 000 DH d'amende.</p>
+
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-icon">&#x1f4b8;</div>
+                    <h3>Sage co&ucirc;te trop cher</h3>
+                    <p>12 000 &agrave; 25 000 DH/an avec des modules s&eacute;par&eacute;s et une architecture fragment&eacute;e. Inaccessible pour la majorit&eacute; des PME.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">&#x1f5a5;&#xfe0f;</div>
+                    <h3>KHABIR reste au bureau</h3>
+                    <p>Logiciel desktop install&eacute; sur un seul poste. Pas de collaboration, pas d'acc&egrave;s mobile, pas de cloud.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">&#x2699;&#xfe0f;</div>
+                    <h3>Odoo est un ERP, pas un comptable</h3>
+                    <p>Puissant mais complexe. N&eacute;cessite un int&eacute;grateur, des mois de configuration, et une expertise technique.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-inner">
+            <span class="section-label">La solution</span>
+            <h2 class="section-title">Tout ce dont une PME marocaine a besoin.<br>Rien de superflu.</h2>
+            <p class="section-subtitle">HissabPro est con&ccedil;u pour les dirigeants et les experts-comptables qui veulent une comptabilit&eacute; simple, fiable et conforme.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-number">01</span>
+                    <h3>Comptabilit&eacute; g&eacute;n&eacute;rale conforme au PCM</h3>
+                    <p>Saisie des &eacute;critures, plan comptable marocain int&eacute;gr&eacute;, journaux, grand livre, balance. G&eacute;n&eacute;ration automatique du bilan et du CPC.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-number">02</span>
+                    <h3>Facturation et gestion des achats</h3>
+                    <p>Cr&eacute;ation de devis et factures conformes avec mentions ICE/IF/RC. Import des factures fournisseurs par OCR. Tout est aliment&eacute; en comptabilit&eacute; automatiquement.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-number">03</span>
+                    <h3>T&eacute;l&eacute;d&eacute;claration TVA et IS</h3>
+                    <p>D&eacute;clarations SIMPL-TVA et SIMPL-IS pr&eacute;-remplies automatiquement. Plus d'erreurs, plus de retards. Les 5 taux de TVA marocains g&eacute;r&eacute;s nativement.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-number">04</span>
+                    <h3>Tr&eacute;sorerie en temps r&eacute;el</h3>
+                    <p>Connexion bancaire, rapprochement automatique, suivi de tr&eacute;sorerie pr&eacute;visionnel. Prenez des d&eacute;cisions bas&eacute;es sur des donn&eacute;es fiables et actualis&eacute;es.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="compliance">
+        <div class="section-inner">
+            <span class="section-label">Conformit&eacute;</span>
+            <h2 class="section-title">Con&ccedil;u pour le Maroc,<br>pas adapt&eacute; apr&egrave;s coup.</h2>
+
+            <div class="compliance-grid">
+                <ul class="compliance-list">
+                    <li>
+                        <div class="check-icon">&#10003;</div>
+                        <div class="compliance-text">
+                            <strong>Plan Comptable Marocain (PCM)</strong>
+                            <span>Toutes les classes de comptes du CGNC pr&eacute;-configur&eacute;es, pas de param&eacute;trage n&eacute;cessaire.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="check-icon">&#10003;</div>
+                        <div class="compliance-text">
+                            <strong>5 taux de TVA natifs</strong>
+                            <span>20%, 14%, 10%, 7%, 0% : g&eacute;r&eacute;s nativement avec calcul automatique.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="check-icon">&#10003;</div>
+                        <div class="compliance-text">
+                            <strong>T&eacute;l&eacute;d&eacute;claration SIMPL</strong>
+                            <span>TVA via SIMPL-TVA, liasses fiscales via SIMPL-IS. Automatis&eacute;, sans ressaisie.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="check-icon">&#10003;</div>
+                        <div class="compliance-text">
+                            <strong>Mentions l&eacute;gales ICE/IF/RC</strong>
+                            <span>Factures conformes &agrave; la r&eacute;glementation marocaine d&egrave;s la premi&egrave;re &eacute;mission.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="check-icon">&#10003;</div>
+                        <div class="compliance-text">
+                            <strong>Archivage num&eacute;rique 10 ans</strong>
+                            <span>Conservation s&eacute;curis&eacute;e conforme aux exigences de la DGI.</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="compliance-visual">
+                    <div class="comp-header">Taux de TVA marocains</div>
+                    <div class="tva-grid">
+                        <div class="tva-item">
+                            <div class="tva-rate">20%</div>
+                            <div class="tva-label">Standard</div>
+                        </div>
+                        <div class="tva-item">
+                            <div class="tva-rate">14%</div>
+                            <div class="tva-label">R&eacute;duit</div>
+                        </div>
+                        <div class="tva-item">
+                            <div class="tva-rate">10%</div>
+                            <div class="tva-label">R&eacute;duit</div>
+                        </div>
+                        <div class="tva-item">
+                            <div class="tva-rate">7%</div>
+                            <div class="tva-label">Super r&eacute;duit</div>
+                        </div>
+                        <div class="tva-item">
+                            <div class="tva-rate">0%</div>
+                            <div class="tva-label">Exon&eacute;r&eacute;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SECTION PRICING CLIENT ── -->
+    <section class="pricing" id="tarifs">
+        <div class="section-inner">
+            <span class="section-label">Tarifs</span>
+            <h2 class="section-title">Des plans pensés pour votre entreprise</h2>
+            <p class="section-subtitle">Accès complet à votre comptabilité en ligne — sans engagement. Commencez dès aujourd'hui.</p>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">Starter</div>
+                    <div class="plan-price-row">
+                        <div class="plan-price">99 <span class="plan-period">MAD / mois</span></div>
+                    </div>
+                    <div class="plan-dossiers">Accès basique à votre comptabilité</div>
+                    <div class="plan-divider"></div>
+                    <ul class="plan-features">
+                        <li><span class="check">✓</span> Dépôt de documents comptables</li>
+                        <li><span class="check">✓</span> Consultation de vos états financiers</li>
+                        <li><span class="check">✓</span> Tableau de bord simplifié</li>
+                        <li><span class="check">✓</span> Messagerie avec votre cabinet</li>
+                        <li><span class="check">✓</span> Export PDF des états</li>
+                        <li><span class="check">✓</span> Support email</li>
+                    </ul>
+                    <a href="/onboarding?type=entreprise" class="plan-cta outline">Commencer →</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <span class="popular-badge">Populaire</span>
+                    <div class="plan-name">Standard</div>
+                    <div class="plan-price-row">
+                        <div class="plan-price">199 <span class="plan-period">DH HT / mois</span></div>
+                    </div>
+                    <div class="plan-dossiers">Fonctionnalités avancées &amp; suivi détaillé</div>
+                    <div class="plan-divider"></div>
+                    <ul class="plan-features">
+                        <li><span class="check">✓</span> Tout du plan Starter</li>
+                        <li><span class="check">✓</span> Suivi détaillé des écritures</li>
+                        <li><span class="check">✓</span> Rapports financiers avancés</li>
+                        <li><span class="check">✓</span> Historique complet &amp; archivage</li>
+                        <li><span class="check">✓</span> Alertes &amp; notifications fiscales</li>
+                        <li><span class="check">✓</span> Collaboration renforcée cabinet</li>
+                        <li><span class="check">✓</span> Support prioritaire</li>
+                    </ul>
+                    <a href="/onboarding?type=entreprise" class="plan-cta primary">Commencer →</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="plan-name">Premium</div>
+                    <div class="plan-price-row">
+                        <div class="plan-price">499 <span class="plan-period">DH HT / mois</span></div>
+                    </div>
+                    <div class="plan-dossiers">Full autonomie &amp; automatisation</div>
+                    <div class="plan-divider"></div>
+                    <ul class="plan-features">
+                        <li><span class="check">✓</span> Tout du plan Standard</li>
+                        <li><span class="check">✓</span> Comptabilité avancée autonome</li>
+                        <li><span class="check">✓</span> Export SIMPL-IS / IR / TVA</li>
+                        <li><span class="check">✓</span> Import OCR factures fournisseurs</li>
+                        <li><span class="check">✓</span> Liasses fiscales DGI complètes</li>
+                        <li><span class="check">✓</span> Automatisation des déclarations</li>
+                        <li><span class="check">✓</span> Account manager dédié</li>
+                    </ul>
+                    <a href="/onboarding?type=entreprise" class="plan-cta outline">Commencer →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CABINET PARTNER SECTION -->
+    <section class="cabinet-partner">
+        <div class="section-inner">
+            <div class="cabinet-partner-inner">
+                <div class="cabinet-partner-text">
+                    <span class="section-label">Cabinets comptables</span>
+                    <h2 class="section-title">Vous êtes un cabinet d'expertise comptable&nbsp;?</h2>
+                    <p class="section-subtitle">Rejoignez le réseau HissabPro — <strong>49 DH HT / mois / dossier client</strong>. Aucun abonnement fixe, vous payez uniquement pour les dossiers actifs.</p>
+                    <ul class="cabinet-benefits">
+                        <li>
+                            <div class="benefit-icon">🗂️</div>
+                            <div>
+                                <strong>Gestion multi-dossiers</strong>
+                                <span>Gérez tous vos clients depuis un seul espace unifié</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="benefit-icon">📊</div>
+                            <div>
+                                <strong>Dashboard cabinet</strong>
+                                <span>Vue d'ensemble de votre portefeuille et alertes en temps réel</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="benefit-icon">🤝</div>
+                            <div>
+                                <strong>Collaboration client</strong>
+                                <span>Espace partagé pour échanges de documents et validations</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="benefit-icon">💳</div>
+                            <div>
+                                <strong>Facturation par dossier</strong>
+                                <span>49 DH HT / mois par dossier actif — simple et transparent</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn-primary" style="margin-top:0.5rem;display:inline-flex;align-items:center;gap:0.5rem;" onclick="event.preventDefault();openPartnerModal()">Devenir cabinet partenaire →</a>
+                </div>
+                <div class="cabinet-partner-visual">
+                    <div class="cabinet-card">
+                        <div class="cabinet-card-header">
+                            <span class="cabinet-card-title">Réseau partenaires</span>
+                            <span class="cabinet-card-badge">HissabPro</span>
+                        </div>
+                        <div class="cabinet-pricing-row">
+                            <span class="cabinet-pricing-label">Tarif par dossier</span>
+                            <span class="cabinet-pricing-value">49 DH HT / mois</span>
+                        </div>
+                        <div class="cabinet-feature-list">
+                            <div class="cf-item"><span class="cf-check">✓</span> Accès dashboard cabinet</div>
+                            <div class="cf-item"><span class="cf-check">✓</span> Dossiers clients illimités</div>
+                            <div class="cf-item"><span class="cf-check">✓</span> Rapport mensuel automatique</div>
+                            <div class="cf-item"><span class="cf-check">✓</span> Support dédié cabinet</div>
+                        </div>
+                        <div class="cabinet-cta-note">Activation après validation de votre demande</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNER MODAL -->
+    <div id="partnerModal" class="modal-overlay" onclick="if(event.target===this)closePartnerModal()">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closePartnerModal()">&times;</button>
+            <div class="modal-header">
+                <h3>Devenir cabinet partenaire</h3>
+                <p>Notre équipe vous contactera dans les 48h pour finaliser votre accès.</p>
+            </div>
+            <form id="partnerForm" onsubmit="submitPartnerForm(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nom du cabinet *</label>
+                        <input type="text" name="cabinet_name" required placeholder="Cabinet Alaoui &amp; Associés">
+                    </div>
+                    <div class="form-group">
+                        <label>Responsable *</label>
+                        <input type="text" name="contact_name" required placeholder="Karim Alaoui">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email professionnel *</label>
+                        <input type="email" name="email" required placeholder="contact@cabinet.ma">
+                    </div>
+                    <div class="form-group">
+                        <label>Téléphone</label>
+                        <input type="tel" name="phone" placeholder="+212 6XX XXX XXX">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre estimé de dossiers</label>
+                        <input type="number" name="estimated_dossiers" min="1" placeholder="ex: 25">
+                    </div>
+                    <div class="form-group">
+                        <label>Ville</label>
+                        <input type="text" name="city" placeholder="Casablanca">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Message (optionnel)</label>
+                    <textarea name="message" rows="3" placeholder="Décrivez votre cabinet et vos besoins..."></textarea>
+                </div>
+                <div id="partnerFormMsg" style="display:none;"></div>
+                <button type="submit" class="btn-primary" id="partnerSubmitBtn" style="width:100%;justify-content:center;">Envoyer ma demande →</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="closing">
+        <h2>Le Maroc m&eacute;rite son <em>Pennylane</em>.<br>On le construit.</h2>
+        <p>HissabPro est la premi&egrave;re plateforme comptable cloud-native pens&eacute;e pour les PME marocaines, par des Marocains.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;">
+            <a href="/onboarding" class="btn-primary">Commencer gratuitement &rarr;</a>
+            <a href="#" class="btn-secondary" onclick="event.preventDefault();openPartnerModal()">Je suis un cabinet</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 HissabPro &middot; Casablanca, Maroc &middot; <a href="mailto:hissabpro@polsia.app">hissabpro@polsia.app</a></p>
+        <p style="margin-top:0.5rem; font-size:0.8rem; opacity:0.7;">
+            <a href="/logiciel-comptabilite-maroc" style="color:inherit;">Logiciel comptabilité Maroc</a>
+            &middot; <a href="/logiciel-comptabilite-maroc#tarifs" style="color:inherit;">Tarifs</a>
+            &middot; <a href="/logiciel-comptabilite-maroc#faq" style="color:inherit;">FAQ</a>
+            &middot; <a href="/onboarding" style="color:inherit;">Commencer</a>
+            &middot; <a href="/login" style="color:inherit;">Connexion</a>
+        </p>
+    </footer>
+
+
+    <!-- Partner Modal JS -->
+    <script>
+    function openPartnerModal() {
+        document.getElementById('partnerModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closePartnerModal() {
+        document.getElementById('partnerModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closePartnerModal();
+    });
+    async function submitPartnerForm(e) {
+        e.preventDefault();
+        const btn = document.getElementById('partnerSubmitBtn');
+        const msgEl = document.getElementById('partnerFormMsg');
+        const form = document.getElementById('partnerForm');
+        btn.disabled = true;
+        btn.textContent = 'Envoi en cours…';
+        msgEl.style.display = 'none';
+        const data = {};
+        new FormData(form).forEach((v, k) => { data[k] = v; });
+        try {
+            const resp = await fetch('/api/cabinet-partenaire-request', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const json = await resp.json();
+            if (resp.ok && json.success) {
+                msgEl.className = 'form-msg-success';
+                msgEl.textContent = '✓ Demande envoyée ! Notre équipe vous contactera dans les 48h.';
+                msgEl.style.display = 'block';
+                form.querySelectorAll('input, textarea, button[type=submit]').forEach(el => el.disabled = true);
+                btn.style.display = 'none';
+            } else {
+                throw new Error(json.error || 'Erreur serveur');
+            }
+        } catch (err) {
+            msgEl.className = 'form-msg-error';
+            msgEl.textContent = '✗ ' + (err.message || 'Erreur — veuillez réessayer.');
+            msgEl.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Envoyer ma demande →';
+        }
+    }
+    </script>
+
+    <!-- Auth redirect: logged-in users go to /app -->
+    <script>
+    (async function() {
+        try {
+            var r = await fetch('/api/auth/me');
+            if (r.ok) {
+                var d = await r.json();
+                if (d && d.user) { window.location.replace('/app'); }
+            }
+        } catch(e) {}
+    })();
+    </script>
+
+    <!-- Polsia Analytics -->
+    <script>
+    (function() {
+        var slug = 'hissabpro';
+        if (!slug) return;
+        var vid = localStorage.getItem('polsia_vid');
+        if (!vid) {
+            vid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0;
+                return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+            localStorage.setItem('polsia_vid', vid);
+        }
+        new Image().src = 'https://polsia.com/api/beacon/pixel?s=' + encodeURIComponent(slug) + '&v=' + encodeURIComponent(vid);
+    })();
+    </script>
+</body>
+</html>

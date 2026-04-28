@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>/* CSRF */
+  (function(){var f=window.fetch;window.fetch=function(u,o){o=o||{};if(typeof u==='string'&&u.indexOf('/api')===0){o.headers=o.headers||{};if(o.headers instanceof Headers){o.headers.set('X-Requested-With','XMLHttpRequest');}else{o.headers['X-Requested-With']='XMLHttpRequest';}}return f.call(this,u,o);};})();
+  </script>
+  <title>HissabPro — Commencer</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Configurez votre espace comptable HissabPro. Onboarding guidé pour les PME marocaines.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --emerald: #0d9488;
+      --emerald-light: #14b8a6;
+      --emerald-dark: #0f766e;
+      --emerald-bg: #f0fdfa;
+      --emerald-border: #a7f3d0;
+      --charcoal: #0f172a;
+      --slate: #334155;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --sand: #f8fafc;
+      --white: #ffffff;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --amber: #d97706;
+      --amber-bg: #fffbeb;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--sand);
+      color: var(--charcoal);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ──────────────────────────────── */
+    .ob-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .ob-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .ob-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-light));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .ob-logo-text {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+    }
+
+    .ob-header-login {
+      font-size: 0.84rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .ob-header-login span {
+      color: var(--emerald);
+      font-weight: 600;
+    }
+
+    /* ── PROGRESS BAR ────────────────────────── */
+    .ob-progress-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ob-progress-bar-track {
+      height: 3px;
+      background: var(--border);
+      overflow: hidden;
+    }
+
+    .ob-progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--emerald), var(--emerald-light));
+      transition: width 0.4s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── STEPPER ─────────────────────────────── */
+    .ob-stepper-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 2rem;
+      overflow-x: auto;
+    }
+
+    .ob-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .ob-step {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .ob-step-content {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      white-space: nowrap;
+    }
+
+    .ob-step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+      border: 2px solid var(--border);
+      background: var(--white);
+      color: var(--muted);
+    }
+
+    .ob-step-num.done {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: white;
+    }
+
+    .ob-step-num.active {
+      background: var(--emerald-bg);
+      border-color: var(--emerald);
+      color: var(--emerald);
+    }
+
+    .ob-step-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .ob-step.active .ob-step-label { color: var(--charcoal); font-weight: 600; }
+    .ob-step.done .ob-step-label { color: var(--emerald); }
+
+    .ob-step-connector {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      margin: 0 0.4rem;
+      border-radius: 1px;
+      transition: background 0.3s;
+    }
+
+    .ob-step-connector.done { background: var(--emerald); }
+
+    /* ── MAIN ────────────────────────────────── */
+    .ob-main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+    }
+
+    .ob-slide {
+      display: none;
+      animation: slideIn 0.3s cubic-bezier(.4,0,.2,1);
+    }
+
+    .ob-slide.active { display: block; }
+
+    .ob-slide.slide-back { animation: slideInBack 0.3s cubic-bezier(.4,0,.2,1); }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(28px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInBack {
+      from { opacity: 0; transform: translateX(-28px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .ob-step-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .ob-step-subtitle {
+      font-size: 0.93rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    /* ── PROFILE CARDS (Step 1) ──────────────── */
+    .profile-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-card {
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--white);
+      position: relative;
+      text-align: center;
+    }
+
+    .profile-card:hover {
+      border-color: var(--emerald-light);
+      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .profile-card.selected {
+      border-color: var(--emerald);
+      background: var(--emerald-bg);
+      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.15);
+    }
+
+    .profile-card-check {
+      position: absolute;
+      top: 0.9rem;
+      right: 0.9rem;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .profile-card.selected .profile-card-check {
+      background: var(--emerald);
+      border-color: var(--emerald);
+    }
+
+    .profile-card-check svg { display: none; }
+    .profile-card.selected .profile-card-check svg { display: block; }
+
+    .profile-card-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .profile-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+
+    .profile-card-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── PLAN CARDS (Entreprise Step 2) ──────── */
+    .plan-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .plan-card {
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--white);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plan-card:hover {
+      border-color: var(--emerald-light);
+      box-shadow: 0 4px 16px rgba(13, 148, 136, 0.1);
+    }
+
+    .plan-card.selected {
+      border-color: var(--emerald);
+      background: var(--emerald-bg);
+      box-shadow: 0 4px 16px rgba(13, 148, 136, 0.15);
+    }
+
+    .plan-card.popular {
+      border-color: var(--emerald);
+    }
+
+    .plan-badge {
+      display: inline-block;
+      background: var(--emerald);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .plan-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+
+    .plan-price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
+
+    .plan-price span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .plan-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.45;
+      flex: 1;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .plan-features li {
+      font-size: 0.77rem;
+      color: var(--slate);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .plan-features li svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--emerald);
+    }
+
+    .plan-select-btn {
+      margin-top: 1.25rem;
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      background: var(--white);
+      color: var(--slate);
+      font-size: 0.84rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .plan-card.selected .plan-select-btn,
+    .plan-select-btn:hover {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: white;
+    }
+
+    /* ── FORM ELEMENTS ───────────────────────── */
+    .form-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.72rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--emerald);
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+    }
+
+    .form-control.error { border-color: var(--danger); }
+
+    .form-error {
+      font-size: 0.75rem;
+      color: var(--danger);
+      margin-top: 0.3rem;
+      display: none;
+    }
+
+    .form-error.show { display: block; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* ── PLAN SUMMARY BAR ─────────────────────── */
+    .plan-summary {
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      border-radius: 10px;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .plan-summary-icon {
+      font-size: 1.3rem;
+    }
+
+    .plan-summary-text {
+      font-size: 0.88rem;
+      color: var(--emerald-dark);
+      font-weight: 500;
+    }
+
+    .plan-summary-text strong {
+      font-weight: 700;
+    }
+
+    .plan-summary-change {
+      margin-left: auto;
+      font-size: 0.78rem;
+      color: var(--emerald);
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── PASSWORD TOGGLE ──────────────────────── */
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap .form-control {
+      padding-right: 2.8rem;
+    }
+
+    .toggle-pwd {
+      position: absolute;
+      right: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+
+    /* ── SUCCESS SCREEN ───────────────────────── */
+    .success-wrap {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--emerald-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .success-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .success-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .success-redirect-bar {
+      background: var(--sand);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .success-countdown {
+      font-weight: 700;
+      color: var(--emerald);
+    }
+
+    /* ── CABINET CONFIRMATION ─────────────────── */
+    .confirm-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--emerald-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ── FOOTER NAV ──────────────────────────── */
+    .ob-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+    }
+
+    .ob-footer-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .ob-footer-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .ob-progress-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--slate);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-back:hover { background: var(--sand); }
+
+    .btn-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.6rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--emerald);
+      color: white;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-next:hover { background: var(--emerald-dark); }
+    .btn-next:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* ── LOADING OVERLAY ─────────────────────── */
+    .ob-loading {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.88);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .ob-loading.show { display: flex; }
+
+    .ob-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--emerald-border);
+      border-top-color: var(--emerald);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 640px) {
+      .ob-header { padding: 0.875rem 1rem; }
+      .ob-stepper-wrap { padding: 0.9rem 1rem; }
+      .ob-main { padding: 1.5rem 1rem 6rem; }
+      .profile-cards { grid-template-columns: 1fr; }
+      .plan-cards { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .ob-footer { padding: 0.875rem 1rem; }
+      .ob-step-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADING OVERLAY -->
+<div class="ob-loading" id="ob-loading">
+  <div class="ob-spinner"></div>
+  <span style="font-size:0.9rem;color:var(--muted);font-weight:500;" id="loading-text">Création de votre compte...</span>
+</div>
+
+<!-- HEADER -->
+<header class="ob-header">
+  <a href="/" class="ob-logo">
+    <div class="ob-logo-icon">H</div>
+    <span class="ob-logo-text">HissabPro</span>
+  </a>
+  <a href="/login" class="ob-header-login">Déjà un compte ? <span>Se connecter</span></a>
+</header>
+
+<!-- PROGRESS BAR -->
+<div class="ob-progress-wrap">
+  <div class="ob-progress-bar-track">
+    <div class="ob-progress-bar-fill" id="ob-progress-fill" style="width: 0%"></div>
+  </div>
+</div>
+
+<!-- STEPPER -->
+<div class="ob-stepper-wrap">
+  <div class="ob-stepper" id="ob-stepper">
+    <!-- Rendered dynamically by JS -->
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="ob-main">
+
+  <!-- ════════════════════════════════════════════
+       SCREEN 1 — Choix du profil
+       ════════════════════════════════════════════ -->
+  <div class="ob-slide active" id="screen-profile">
+    <h1 class="ob-step-title">Bienvenue sur HissabPro 🇲🇦</h1>
+    <p class="ob-step-subtitle">Dites-nous qui vous êtes pour personnaliser votre expérience.</p>
+
+    <div class="profile-cards">
+      <div class="profile-card" id="card-cabinet" onclick="selectProfile('cabinet')">
+        <div class="profile-card-check">
+          <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
+            <path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="profile-card-icon">🏢</span>
+        <div class="profile-card-title">Cabinet comptable</div>
+        <div class="profile-card-desc">Gérez les dossiers de vos clients, invitez des collaborateurs, centralisez la comptabilité multi-entreprise.</div>
+      </div>
+      <div class="profile-card" id="card-entreprise" onclick="selectProfile('entreprise')">
+        <div class="profile-card-check">
+          <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
+            <path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="profile-card-icon">🏪</span>
+        <div class="profile-card-title">Entreprise</div>
+        <div class="profile-card-desc">Gérez la comptabilité de votre propre entreprise — factures, dépenses, TVA, tableau de bord.</div>
+      </div>
+    </div>
+
+    <div class="form-error" id="err-profile" style="font-size:0.85rem;">Veuillez choisir votre profil pour continuer.</div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       CABINET — Formulaire partenaire
+       ════════════════════════════════════════════ -->
+  <div class="ob-slide" id="screen-cabinet-form">
+    <h1 class="ob-step-title">Devenir cabinet partenaire</h1>
+    <p class="ob-step-subtitle">Remplissez ce formulaire. Notre équipe vous contactera sous 48h pour organiser votre déploiement.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nom du cabinet <span style="color:var(--danger)">*</span></label>
+        <input type="text" class="form-control" id="cab-name" placeholder="Ex: Cabinet Alami & Associés" autocomplete="organization">
+        <div class="form-error" id="err-cab-name">Ce champ est requis</div>
+      </div>
+      <div class="form-group">
+        <label>Nom du responsable <span style="color:var(--danger)">*</span></label>
+        <input type="text" class="form-control" id="cab-contact" placeholder="Ex: Mohammed Alami" autocomplete="name">
+        <div class="form-error" id="err-cab-contact">Ce champ est requis</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email professionnel <span style="color:var(--danger)">*</span></label>
+        <input type="email" class="form-control" id="cab-email" placeholder="vous@cabinet.ma" autocomplete="email">
+        <div class="form-error" id="err-cab-email">Email invalide</div>
+      </div>
+      <div class="form-group">
+        <label>Téléphone <span style="color:var(--danger)">*</span></label>
+        <input type="tel" class="form-control" id="cab-phone" placeholder="06 XX XX XX XX" autocomplete="tel">
+        <div class="form-error" id="err-cab-phone">Ce champ est requis</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nombre estimé de dossiers <span style="color:var(--danger)">*</span></label>
+        <select class="form-control" id="cab-dossiers">
+          <option value="">— Sélectionner —</option>
+          <option value="1-10">1 à 10 dossiers</option>
+          <option value="11-50">11 à 50 dossiers</option>
+          <option value="51-100">51 à 100 dossiers</option>
+          <option value="100+">Plus de 100 dossiers</option>
+        </select>
+        <div class="form-error" id="err-cab-dossiers">Ce champ est requis</div>
+      </div>
+      <div class="form-group">
+        <label>Ville <span style="color:var(--danger)">*</span></label>
+        <input type="text" class="form-control" id="cab-city" placeholder="Ex: Casablanca" autocomplete="address-level2">
+        <div class="form-error" id="err-cab-city">Ce champ est requis</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Message <span style="color:var(--muted);font-weight:400;"> (optionnel)</span></label>
+      <textarea class="form-control" id="cab-message" rows="3" placeholder="Questions, contexte particulier..."></textarea>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       CABINET — Confirmation
+       ════════════════════════════════════════════ -->
+  <div class="ob-slide" id="screen-cabinet-confirm">
+    <div style="text-align:center; padding: 2.5rem 0;">
+      <div class="confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--emerald)" stroke-width="2.5" width="34" height="34">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-linecap="round"/>
+          <polyline points="22 4 12 14.01 9 11.01" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1 class="ob-step-title" style="margin-bottom:0.75rem;">Demande envoyée !</h1>
+      <p class="ob-step-subtitle" style="max-width:440px;margin:0 auto 2.5rem;">
+        Votre demande a été enregistrée avec succès.<br>
+        Notre équipe vous contactera <strong>sous 48h</strong> pour organiser votre déploiement.
+      </p>
+      <a href="/" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.75rem;background:var(--white);border:1px solid var(--border);border-radius:8px;color:var(--slate);font-size:0.9rem;font-weight:600;text-decoration:none;transition:background 0.15s;" onmouseover="this.style.background='var(--sand)'" onmouseout="this.style.background='var(--white)'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Retour à l'accueil
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       ENTREPRISE — Choix du plan
+       ════════════════════════════════════════════ -->
+  <div class="ob-slide" id="screen-plan">
+    <h1 class="ob-step-title">Choisissez votre plan</h1>
+    <p class="ob-step-subtitle">Tous les plans incluent l'accès complet pendant 14 jours. Annulez à tout moment.</p>
+
+    <div class="plan-cards">
+      <!-- Starter -->
+      <div class="plan-card" id="plan-starter" onclick="selectPlan('starter')">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">99 DH<span>/mois</span></div>
+        <div class="plan-desc">Idéal pour débuter et gérer l'essentiel.</div>
+        <ul class="plan-features">
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Dépôt de documents
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Consultation en ligne
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Factures & devis
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Tableau de bord basique
+          </li>
+        </ul>
+        <button class="plan-select-btn">Choisir Starter</button>
+      </div>
+
+      <!-- Standard (popular) -->
+      <div class="plan-card popular selected" id="plan-standard" onclick="selectPlan('standard')">
+        <div class="plan-badge">⭐ Populaire</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price">199 DH<span>/mois</span></div>
+        <div class="plan-desc">La solution complète pour une gestion professionnelle.</div>
+        <ul class="plan-features">
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Tout Starter inclus
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Suivi TVA &amp; déclarations
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            OCR factures fournisseurs
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Rapports financiers avancés
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Messagerie cabinet
+          </li>
+        </ul>
+        <button class="plan-select-btn" style="background:var(--emerald);border-color:var(--emerald);color:white;">Choisir Standard</button>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card" id="plan-premium" onclick="selectPlan('premium')">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">499 DH<span>/mois</span></div>
+        <div class="plan-desc">Autonomie totale et comptabilité avancée.</div>
+        <ul class="plan-features">
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Tout Standard inclus
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Comptabilité analytique
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Automatisation écritures
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Export PCM complet
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" width="13" height="13">
+              <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Support prioritaire
+          </li>
+        </ul>
+        <button class="plan-select-btn">Choisir Premium</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       ENTREPRISE — Création de compte
+       ════════════════════════════════════════════ -->
+  <div class="ob-slide" id="screen-account">
+    <h1 class="ob-step-title">Créez votre compte</h1>
+    <p class="ob-step-subtitle">Quelques informations et vous êtes prêt.</p>
+
+    <!-- Plan résumé -->
+    <div class="plan-summary" id="plan-summary-bar">
+      <span class="plan-summary-icon">✅</span>
+      <span class="plan-summary-text">Plan <strong id="plan-summary-name">Standard</strong> — <span id="plan-summary-price">199 DH/mois</span></span>
+      <button class="plan-summary-change" onclick="goToScreen('plan', true)">Changer</button>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nom complet <span style="color:var(--danger)">*</span></label>
+        <input type="text" class="form-control" id="ent-name" placeholder="Mohammed Benali" autocomplete="name">
+        <div class="form-error" id="err-ent-name">Ce champ est requis</div>
+      </div>
+      <div class="form-group">
+        <label>Nom de l'entreprise <span style="color:var(--danger)">*</span></label>
+        <input type="text" class="form-control" id="ent-company" placeholder="Ex: SARL TechMaroc" autocomplete="organization">
+        <div class="form-error" id="err-ent-company">Ce champ est requis</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email <span style="color:var(--danger)">*</span></label>
+      <input type="email" class="form-control" id="ent-email" placeholder="vous@entreprise.ma" autocomplete="email">
+      <div class="form-error" id="err-ent-email">Email invalide</div>
+    </div>
+
+    <div class="form-group">
+      <label>Mot de passe <span style="color:var(--danger)">*</span></label>
+      <div class="input-wrap">
+        <input type="password" class="form-control" id="ent-password" placeholder="Minimum 6 caractères" autocomplete="new-password">
+        <button type="button" class="toggle-pwd" onclick="togglePwd()" title="Afficher/masquer">
+          <svg id="pwd-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+      <div class="form-error" id="err-ent-password">Minimum 6 caractères requis</div>
+    </div>
+
+    <div class="form-error" id="err-ent-global" style="font-size:0.85rem;margin-top:0.5rem;"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       ENTREPRISE — Accès App (succès)
+       ════════════════════════════════════════════ -->
+  <div class="ob-slide" id="screen-success">
+    <div class="success-wrap">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--emerald)" stroke-width="2.5" width="36" height="36">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-linecap="round"/>
+          <polyline points="22 4 12 14.01 9 11.01" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1 class="success-title">Votre compte est prêt ! 🎉</h1>
+      <p class="success-subtitle">
+        Bienvenue sur HissabPro, <strong id="success-name">—</strong>.<br>
+        Vous allez être redirigé vers votre tableau de bord.
+      </p>
+      <div class="success-redirect-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Redirection dans <span class="success-countdown" id="countdown">3</span>s…
+      </div>
+      <a href="/app" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.75rem;background:var(--emerald);border-radius:8px;color:white;font-size:0.9rem;font-weight:600;text-decoration:none;">
+        Accéder maintenant →
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER NAV -->
+<footer class="ob-footer" id="ob-footer">
+  <div class="ob-footer-left">
+    <button class="btn-back" id="btn-back" onclick="handleBack()" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Précédent
+    </button>
+    <span class="ob-progress-text" id="ob-progress-text"></span>
+  </div>
+  <div class="ob-footer-right">
+    <button class="btn-next" id="btn-next" onclick="handleNext()">
+      Commencer →
+    </button>
+  </div>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────────────────
+const LS_KEY = 'hissabpro_ob_state';
+
+const SCREENS = {
+  profile:         { id: 'screen-profile',         label: 'Profil',    showFooter: true,  showBack: false },
+  cabinet_form:    { id: 'screen-cabinet-form',     label: 'Formulaire', showFooter: true, showBack: true },
+  cabinet_confirm: { id: 'screen-cabinet-confirm',  label: 'Confirmé',  showFooter: false, showBack: false },
+  plan:            { id: 'screen-plan',             label: 'Plan',      showFooter: true,  showBack: true },
+  account:         { id: 'screen-account',          label: 'Compte',    showFooter: true,  showBack: true },
+  success:         { id: 'screen-success',          label: 'Accès',     showFooter: false, showBack: false },
+};
+
+// Cabinet stepper
+const STEPPER_CABINET = ['profile', 'cabinet_form', 'cabinet_confirm'];
+// Entreprise stepper
+const STEPPER_ENTREPRISE = ['profile', 'plan', 'account', 'success'];
+
+let state = {
+  profile: '',  // 'cabinet' | 'entreprise'
+  plan: 'standard',
+  currentScreen: 'profile',
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', async () => {
+  const params = new URLSearchParams(window.location.search);
+  const force = params.get('force') === '1';
+
+  // Auth check — if already logged in, redirect to /app (unless ?force=1)
+  if (!force) {
+    try {
+      const r = await fetch('/api/auth/me');
+      if (r.ok) {
+        const data = await r.json();
+        if (data && data.user) {
+          window.location.href = '/app';
+          return;
+        }
+      }
+    } catch (_) { /* not logged in, continue */ }
+  }
+
+  // Init from URL params
+  const typeParam = params.get('type');
+  if (typeParam === 'cabinet') {
+    state.profile = 'cabinet';
+    selectProfile('cabinet', false);
+    goToScreen('cabinet_form', false, true);
+    return;
+  }
+  if (typeParam === 'entreprise') {
+    state.profile = 'entreprise';
+    selectProfile('entreprise', false);
+    goToScreen('plan', false, true);
+    return;
+  }
+
+  // Try restore from localStorage
+  try {
+    const saved = localStorage.getItem(LS_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Only restore partial non-terminal states (not success/confirm)
+      if (parsed.profile && parsed.currentScreen && !['success','cabinet_confirm'].includes(parsed.currentScreen)) {
+        state = { ...state, ...parsed };
+        if (state.profile) {
+          selectProfile(state.profile, false);
+        }
+        if (state.plan) selectPlan(state.plan, false);
+        goToScreen(state.currentScreen, false, true);
+        return;
+      }
+    }
+  } catch (_) { /* ignore */ }
+
+  updateStepper();
+  updateFooter();
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PROFILE SELECTION
+// ─────────────────────────────────────────────────────────────────────────────
+function selectProfile(type, save = true) {
+  state.profile = type;
+  document.getElementById('card-cabinet').classList.toggle('selected', type === 'cabinet');
+  document.getElementById('card-entreprise').classList.toggle('selected', type === 'entreprise');
+  document.getElementById('err-profile').classList.remove('show');
+  if (save) saveState();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PLAN SELECTION
+// ─────────────────────────────────────────────────────────────────────────────
+const PLAN_LABELS = { starter: 'Starter', standard: 'Standard', premium: 'Premium' };
+const PLAN_PRICES = { starter: '99 DH/mois', standard: '199 DH/mois', premium: '499 DH/mois' };
+
+function selectPlan(plan, save = true) {
+  state.plan = plan;
+  ['starter', 'standard', 'premium'].forEach(p => {
+    const card = document.getElementById(`plan-${p}`);
+    if (p === plan) {
+      card.classList.add('selected');
+      card.querySelector('.plan-select-btn').style.background = 'var(--emerald)';
+      card.querySelector('.plan-select-btn').style.borderColor = 'var(--emerald)';
+      card.querySelector('.plan-select-btn').style.color = 'white';
+    } else {
+      card.classList.remove('selected');
+      card.querySelector('.plan-select-btn').style.background = '';
+      card.querySelector('.plan-select-btn').style.borderColor = '';
+      card.querySelector('.plan-select-btn').style.color = '';
+    }
+  });
+  // Update summary bar
+  document.getElementById('plan-summary-name').textContent = PLAN_LABELS[plan];
+  document.getElementById('plan-summary-price').textContent = PLAN_PRICES[plan];
+  if (save) saveState();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NAVIGATION
+// ─────────────────────────────────────────────────────────────────────────────
+function handleNext() {
+  const screen = state.currentScreen;
+
+  if (screen === 'profile') {
+    if (!state.profile) {
+      document.getElementById('err-profile').classList.add('show');
+      return;
+    }
+    if (state.profile === 'cabinet') {
+      goToScreen('cabinet_form');
+    } else {
+      goToScreen('plan');
+    }
+    return;
+  }
+
+  if (screen === 'cabinet_form') {
+    if (!validateCabinetForm()) return;
+    submitCabinetForm();
+    return;
+  }
+
+  if (screen === 'plan') {
+    goToScreen('account');
+    return;
+  }
+
+  if (screen === 'account') {
+    if (!validateAccountForm()) return;
+    submitAccountForm();
+    return;
+  }
+}
+
+function handleBack() {
+  const screen = state.currentScreen;
+  if (screen === 'cabinet_form') { goToScreen('profile', true); return; }
+  if (screen === 'plan')         { goToScreen('profile', true); return; }
+  if (screen === 'account')      { goToScreen('plan', true); return; }
+}
+
+function goToScreen(screenKey, isBack = false, silent = false) {
+  // Hide all
+  Object.keys(SCREENS).forEach(k => {
+    const el = document.getElementById(SCREENS[k].id);
+    if (el) {
+      el.classList.remove('active', 'slide-back');
+    }
+  });
+
+  // Show new
+  const el = document.getElementById(SCREENS[screenKey].id);
+  if (!el) return;
+  if (isBack) el.classList.add('slide-back');
+  setTimeout(() => el.classList.add('active'), 10);
+
+  state.currentScreen = screenKey;
+  if (!silent) saveState();
+
+  updateStepper();
+  updateFooter();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STEPPER
+// ─────────────────────────────────────────────────────────────────────────────
+function updateStepper() {
+  const path = state.profile === 'cabinet' ? STEPPER_CABINET : STEPPER_ENTREPRISE;
+  const currentIdx = path.indexOf(state.currentScreen);
+  const stepper = document.getElementById('ob-stepper');
+  stepper.innerHTML = '';
+
+  const stepLabels = {
+    profile:         'Profil',
+    cabinet_form:    'Formulaire',
+    cabinet_confirm: 'Confirmé',
+    plan:            'Plan',
+    account:         'Compte',
+    success:         'Accès',
+  };
+
+  path.forEach((key, idx) => {
+    const isDone = idx < currentIdx;
+    const isActive = idx === currentIdx;
+    const numEl = document.createElement('div');
+    numEl.className = 'ob-step' + (isDone ? ' done' : isActive ? ' active' : '');
+    numEl.innerHTML = `
+      <div class="ob-step-content">
+        <div class="ob-step-num ${isDone ? 'done' : isActive ? 'active' : ''}">
+          ${isDone
+            ? '<svg viewBox="0 0 12 12" fill="none" width="12" height="12"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+            : idx + 1
+          }
+        </div>
+        <span class="ob-step-label">${stepLabels[key] || key}</span>
+      </div>`;
+    stepper.appendChild(numEl);
+
+    if (idx < path.length - 1) {
+      const conn = document.createElement('div');
+      conn.className = 'ob-step-connector' + (isDone ? ' done' : '');
+      stepper.appendChild(conn);
+    }
+  });
+
+  // Progress bar
+  const total = path.length;
+  const progress = total > 1 ? Math.round((currentIdx / (total - 1)) * 100) : 0;
+  document.getElementById('ob-progress-fill').style.width = Math.max(5, progress) + '%';
+
+  // Progress text
+  document.getElementById('ob-progress-text').textContent =
+    currentIdx >= 0 && total > 1 ? `Étape ${currentIdx + 1} sur ${total}` : '';
+}
+
+function updateFooter() {
+  const screen = SCREENS[state.currentScreen];
+  const footer = document.getElementById('ob-footer');
+  const btnBack = document.getElementById('btn-back');
+  const btnNext = document.getElementById('btn-next');
+
+  if (!screen || !screen.showFooter) {
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'flex';
+  btnBack.style.display = screen.showBack ? 'inline-flex' : 'none';
+
+  // Button labels
+  const labels = {
+    profile:      'Continuer →',
+    cabinet_form: 'Envoyer la demande →',
+    plan:         'Continuer →',
+    account:      'Créer mon compte →',
+  };
+  btnNext.textContent = labels[state.currentScreen] || 'Continuer →';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// VALIDATION
+// ─────────────────────────────────────────────────────────────────────────────
+function validateCabinetForm() {
+  let valid = true;
+  const fields = [
+    { id: 'cab-name',     errId: 'err-cab-name',     msg: 'Ce champ est requis', check: v => v.trim() !== '' },
+    { id: 'cab-contact',  errId: 'err-cab-contact',  msg: 'Ce champ est requis', check: v => v.trim() !== '' },
+    { id: 'cab-email',    errId: 'err-cab-email',    msg: 'Email invalide',      check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+    { id: 'cab-phone',    errId: 'err-cab-phone',    msg: 'Ce champ est requis', check: v => v.trim() !== '' },
+    { id: 'cab-dossiers', errId: 'err-cab-dossiers', msg: 'Ce champ est requis', check: v => v !== '' },
+    { id: 'cab-city',     errId: 'err-cab-city',     msg: 'Ce champ est requis', check: v => v.trim() !== '' },
+  ];
+
+  fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    const errEl = document.getElementById(f.errId);
+    const val = el ? el.value : '';
+    if (!f.check(val)) {
+      el && el.classList.add('error');
+      if (errEl) { errEl.textContent = f.msg; errEl.classList.add('show'); }
+      valid = false;
+    } else {
+      el && el.classList.remove('error');
+      if (errEl) errEl.classList.remove('show');
+    }
+  });
+
+  return valid;
+}
+
+function validateAccountForm() {
+  let valid = true;
+
+  const nameEl = document.getElementById('ent-name');
+  const compEl = document.getElementById('ent-company');
+  const emailEl = document.getElementById('ent-email');
+  const pwdEl = document.getElementById('ent-password');
+
+  // Name
+  if (!nameEl.value.trim()) {
+    nameEl.classList.add('error');
+    document.getElementById('err-ent-name').classList.add('show');
+    valid = false;
+  } else {
+    nameEl.classList.remove('error');
+    document.getElementById('err-ent-name').classList.remove('show');
+  }
+
+  // Company
+  if (!compEl.value.trim()) {
+    compEl.classList.add('error');
+    document.getElementById('err-ent-company').classList.add('show');
+    valid = false;
+  } else {
+    compEl.classList.remove('error');
+    document.getElementById('err-ent-company').classList.remove('show');
+  }
+
+  // Email
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+    emailEl.classList.add('error');
+    document.getElementById('err-ent-email').classList.add('show');
+    valid = false;
+  } else {
+    emailEl.classList.remove('error');
+    document.getElementById('err-ent-email').classList.remove('show');
+  }
+
+  // Password
+  if (pwdEl.value.length < 6) {
+    pwdEl.classList.add('error');
+    document.getElementById('err-ent-password').classList.add('show');
+    valid = false;
+  } else {
+    pwdEl.classList.remove('error');
+    document.getElementById('err-ent-password').classList.remove('show');
+  }
+
+  return valid;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SUBMIT — CABINET
+// ─────────────────────────────────────────────────────────────────────────────
+async function submitCabinetForm() {
+  const loading = document.getElementById('ob-loading');
+  document.getElementById('loading-text').textContent = 'Envoi de votre demande...';
+  loading.classList.add('show');
+
+  try {
+    const payload = {
+      cabinet_name:       document.getElementById('cab-name').value.trim(),
+      contact_name:       document.getElementById('cab-contact').value.trim(),
+      email:              document.getElementById('cab-email').value.trim(),
+      phone:              document.getElementById('cab-phone').value.trim(),
+      estimated_dossiers: parseInt(document.getElementById('cab-dossiers').value.split('-')[0], 10) || null,
+      city:               document.getElementById('cab-city').value.trim(),
+      message:            document.getElementById('cab-message').value.trim() || null,
+    };
+
+    const r = await fetch('/api/cabinet-partenaire-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) {
+      loading.classList.remove('show');
+      alert(data.error || 'Erreur lors de l\'envoi. Réessayez.');
+      return;
+    }
+
+    loading.classList.remove('show');
+    // Clear localStorage
+    try { localStorage.removeItem(LS_KEY); } catch (_) {}
+    goToScreen('cabinet_confirm');
+  } catch (e) {
+    loading.classList.remove('show');
+    alert('Erreur de connexion. Vérifiez votre connexion et réessayez.');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SUBMIT — ENTREPRISE ACCOUNT CREATION
+// ─────────────────────────────────────────────────────────────────────────────
+async function submitAccountForm() {
+  const loading = document.getElementById('ob-loading');
+  document.getElementById('loading-text').textContent = 'Création de votre compte...';
+  loading.classList.add('show');
+
+  const errGlobal = document.getElementById('err-ent-global');
+  errGlobal.classList.remove('show');
+
+  try {
+    const payload = {
+      name:         document.getElementById('ent-name').value.trim(),
+      email:        document.getElementById('ent-email').value.trim(),
+      password:     document.getElementById('ent-password').value,
+      company_name: document.getElementById('ent-company').value.trim(),
+      plan:         state.plan,
+    };
+
+    const r = await fetch('/api/onboarding/register-entreprise', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await r.json().catch(() => ({}));
+    loading.classList.remove('show');
+
+    if (!r.ok) {
+      errGlobal.textContent = data.error || 'Erreur lors de la création du compte.';
+      errGlobal.classList.add('show');
+      return;
+    }
+
+    // Clear localStorage
+    try { localStorage.removeItem(LS_KEY); } catch (_) {}
+
+    // Show success screen
+    document.getElementById('success-name').textContent = payload.name.split(' ')[0];
+    goToScreen('success');
+
+    // Countdown + redirect
+    let count = 3;
+    const tick = setInterval(() => {
+      count--;
+      const el = document.getElementById('countdown');
+      if (el) el.textContent = count;
+      if (count <= 0) {
+        clearInterval(tick);
+        window.location.href = '/app';
+      }
+    }, 1000);
+
+  } catch (e) {
+    document.getElementById('ob-loading').classList.remove('show');
+    const errGlobal = document.getElementById('err-ent-global');
+    errGlobal.textContent = 'Erreur de connexion. Vérifiez votre connexion et réessayez.';
+    errGlobal.classList.add('show');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PASSWORD TOGGLE
+// ─────────────────────────────────────────────────────────────────────────────
+function togglePwd() {
+  const inp = document.getElementById('ent-password');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LOCALSTORAGE
+// ─────────────────────────────────────────────────────────────────────────────
+function saveState() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify({
+      profile:       state.profile,
+      plan:          state.plan,
+      currentScreen: state.currentScreen,
+    }));
+  } catch (_) {}
+}
+</script>
+</body>
+</html>

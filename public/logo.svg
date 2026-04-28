@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#grad)"/>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d9488;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#14b8a6;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="600" height="630" fill="url(#grad)"/>
+  <rect x="600" y="0" width="600" height="630" fill="#f8fafc"/>
+  <!-- Logo icon -->
+  <rect x="120" y="200" width="360" height="230" rx="24" fill="white" opacity="0.15"/>
+  <rect x="140" y="220" width="320" height="190" rx="18" fill="white"/>
+  <!-- H letter -->
+  <rect x="165" y="250" width="16" height="130" rx="8" fill="#0d9488"/>
+  <rect x="299" y="250" width="16" height="130" rx="8" fill="#0d9488"/>
+  <rect x="165" y="305" width="150" height="16" rx="8" fill="#0d9488"/>
+  <!-- Pro badge -->
+  <rect x="165" y="360" width="80" height="30" rx="8" fill="#0d9488" opacity="0.15"/>
+  <text x="205" y="382" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0d9488" text-anchor="middle">PRO</text>
+  <!-- Text on white side -->
+  <text x="760" y="270" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="#0f172a" text-anchor="middle">HissabPro</text>
+  <text x="760" y="345" font-family="Arial, sans-serif" font-size="28" fill="#64748b" text-anchor="middle">Comptabilit&#233; Cloud Maroc</text>
+  <line x1="700" y1="375" x2="820" y2="375" stroke="#0d9488" stroke-width="3" stroke-linecap="round"/>
+  <text x="760" y="420" font-family="Arial, sans-serif" font-size="20" fill="#334155" text-anchor="middle">Logiciel PCM conforme</text>
+  <text x="760" y="455" font-family="Arial, sans-serif" font-size="20" fill="#334155" text-anchor="middle">Facturation ICE / TVA SIMPL</text>
+</svg>

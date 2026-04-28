@@ -1,0 +1,702 @@
+/**
+ * HissabPro — Navy Design Charter
+ * Task #1117663 — Charte navy Pennylane, toutes pages métier
+ *
+ * Loaded AFTER all other stylesheets (including inline <style>).
+ * Cascade order takes precedence over earlier declarations.
+ */
+
+/* ================================================================
+   0. CSS VARIABLES — Navy additions
+   ================================================================ */
+:root {
+    --navy:             #082a55;
+    --navy-dark:        #05234a;
+    --sidebar-active:   #7587a3;
+    --navy-border:      rgba(255,255,255,0.08);
+    --navy-text-muted:  #ffffff;
+    --navy-text-main:   #ffffff;
+    --navy-text-bright: #ffffff;
+    --surface:          #ffffff;
+    --border:           #e2e8f0;
+}
+
+/* ================================================================
+   1. NAVY DESIGN TOKENS (kept for compatibility)
+   ================================================================ */
+
+/* ================================================================
+   Sub panels (saisie, vente) — keep white bg
+   ================================================================ */
+#saisie-panel,
+#vente-side-panel,
+[id$="-side-panel"] {
+    background: #ffffff !important;
+    border-right: 1px solid #e2e8f0 !important;
+}
+
+/* ================================================================
+   2. COMPACT BUTTONS — 24px height
+   ================================================================ */
+.btn {
+    height: 24px !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+    border-radius: 3px !important;
+    line-height: 1 !important;
+    gap: 4px !important;
+}
+
+.btn svg {
+    width: 14px !important;
+    height: 14px !important;
+}
+
+.btn-sm {
+    height: 20px !important;
+    padding: 0 7px !important;
+    font-size: 11px !important;
+}
+
+/* Primary — teal */
+.btn-primary {
+    background: #0d9488 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.btn-primary:hover {
+    background: #0f766e !important;
+    box-shadow: 0 1px 6px rgba(13,148,136,0.2) !important;
+}
+
+/* Secondary — outlined */
+.btn-secondary {
+    background: #ffffff !important;
+    color: #334155 !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+.btn-secondary:hover {
+    background: #f8fafc !important;
+    border-color: #0d9488 !important;
+}
+
+/* Teal utility */
+.btn-teal {
+    background: #0d9488 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.btn-teal:hover {
+    background: #0f766e !important;
+}
+
+/* Danger */
+.btn-danger {
+    background: #dc2626 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.btn-danger:hover {
+    background: #b91c1c !important;
+}
+
+/* Ghost */
+.btn-ghost {
+    padding: 0 6px !important;
+}
+
+/* ================================================================
+   3. DENSE TABLES — th 30px, td 31px
+   ================================================================ */
+
+/* Headers */
+thead th,
+.listing-table thead th,
+.saisie-table thead th,
+.table-v2 thead th,
+.members-table th,
+.line-items-table th,
+.journal-lines th,
+.journal-entry-lines th,
+.ns-table thead th,
+.re-table thead th,
+.entv-table thead th {
+    height: 30px !important;
+    padding: 0 12px !important;
+    line-height: 30px !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* Rows */
+tbody td,
+.listing-table tbody td,
+.saisie-table tbody td,
+.table-v2 tbody td,
+.members-table td,
+.line-items-table td,
+.journal-lines td,
+.journal-entry-lines td,
+.ns-table tbody td,
+.re-table tbody td,
+.entv-table tbody td {
+    height: 31px !important;
+    padding: 0 12px !important;
+    line-height: 31px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+/* Exception — explicitly multiline cells */
+.cell-multiline,
+td.multiline,
+.expanded-content td,
+td[rowspan] {
+    height: auto !important;
+    line-height: 1.4 !important;
+    padding: 6px 12px !important;
+    white-space: normal !important;
+}
+
+/* Scroll on wide tables */
+.table-container,
+.pl-table-wrap,
+[class*="table-wrap"] {
+    overflow-x: auto !important;
+}
+
+/* ================================================================
+   4. BLUE / UNIFORM BADGES — .status utility class
+   ================================================================ */
+
+/* New .status class — blue default */
+.status {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 1px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 18px;
+    white-space: nowrap;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8;
+}
+
+.status-success, .status.success  { background: #f0fdf4 !important; border-color: #bbf7d0 !important; color: #15803d !important; }
+.status-warning, .status.warning  { background: #fffbeb !important; border-color: #fde68a !important; color: #92400e !important; }
+.status-danger,  .status.danger   { background: #fef2f2 !important; border-color: #fecaca !important; color: #dc2626 !important; }
+.status-gray,    .status.gray     { background: #f8fafc !important; border-color: #e2e8f0 !important; color: #475569 !important; }
+.status-teal,    .status.teal     { background: #f0fdfa !important; border-color: #99f6e4 !important; color: #0f766e !important; }
+
+/* Compact existing .badge */
+.badge {
+    border-radius: 9999px !important;
+    padding: 1px 8px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    line-height: 18px !important;
+}
+
+/* Compact existing .status-pill */
+.status-pill {
+    padding: 1px 8px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    line-height: 18px !important;
+    border-radius: 9999px !important;
+}
+
+/* Blue-leaning: pending/sent/validated → blue */
+.status-pill-sent,
+.status-pill-validated,
+.status-pill-pre_traitee,
+.badge-sent {
+    background: #eff6ff !important;
+    color: #1d4ed8 !important;
+}
+
+/* Green: paid/approved/traitee */
+.status-pill-paid,
+.status-pill-approved,
+.status-pill-traitee,
+.badge-paid,
+.badge-validated,
+.badge-approved {
+    background: #f0fdf4 !important;
+    color: #15803d !important;
+}
+
+/* Compact entv count badge */
+.entv-count-badge {
+    min-width: 18px !important;
+    height: 18px !important;
+    font-size: 0.65rem !important;
+    border-radius: 9px !important;
+    padding: 0 4px !important;
+}
+
+/* ================================================================
+   5. GREEN PROGRESS BARS
+   ================================================================ */
+.entv-progress-fill {
+    background: #16a34a !important;
+}
+
+.entv-progress-fill.amber {
+    background: #d97706 !important;
+}
+
+.entv-progress-fill.red {
+    background: #dc2626 !important;
+}
+
+/* Generic progress fills */
+[class*="progress-fill"]:not(.amber):not(.red),
+[class*="progress-bar-fill"]:not(.amber):not(.red) {
+    background: #16a34a !important;
+}
+
+/* ================================================================
+   6. KPI / STAT CARDS — border-radius 3px, compact
+   ================================================================ */
+.stat-card {
+    border-radius: 3px !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04) !important;
+    padding: 0.625rem 0.875rem !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* Charts — consistent border */
+.chart-container,
+[class*="chart-wrap"],
+[class*="chart-card"] {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    border-radius: 3px;
+}
+
+/* KPI v2 cards */
+.kpi-card-v2 {
+    border-radius: 3px !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04) !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* ================================================================
+   7. SEARCH INPUTS — 24px compact
+   ================================================================ */
+.search {
+    height: 24px;
+    border-radius: 3px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    padding: 0 10px;
+    font-size: 12px;
+    font-family: var(--font-family, 'Inter', sans-serif);
+    color: #334155;
+    outline: none;
+    transition: border-color 150ms ease;
+}
+
+.search:focus {
+    border-color: #0d9488;
+    box-shadow: 0 0 0 1px #0d9488;
+}
+
+.search::placeholder {
+    color: #94a3b8;
+}
+
+/* ================================================================
+   8. ENTV (Entreprises) SPECIFIC OVERRIDES
+   ================================================================ */
+
+/* Avatars 22px */
+.entv-avatar {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    font-size: 0.65rem !important;
+}
+
+/* Filter selects/buttons compact */
+.entv-select {
+    height: 24px !important;
+    font-size: 12px !important;
+    border-radius: 3px !important;
+    padding: 0 8px !important;
+}
+
+/* ================================================================
+   9. MISC — Tabs, empty states, form labels
+   ================================================================ */
+
+/* Compact tabs */
+.tab {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+}
+
+/* Form labels 12px */
+.form-group label,
+.hp-label {
+    font-size: 12px !important;
+}
+
+/* pl-card border-radius 3px */
+.pl-card,
+.pl-card-lg {
+    border-radius: 3px !important;
+}
+
+/* pl-btn compact 24px */
+.pl-btn,
+.pl-btn-primary,
+.pl-btn-danger,
+.pl-btn-ghost,
+.pl-btn-ghost-primary,
+.pl-btn-active {
+    height: 24px !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+    border-radius: 3px !important;
+}
+
+/* pl-table compact rows */
+.pl-table th {
+    height: 30px !important;
+    padding: 0 12px !important;
+    font-size: 11px !important;
+}
+
+.pl-table td {
+    height: 31px !important;
+    padding: 0 12px !important;
+}
+
+/* Empty states with border token */
+.listing-empty,
+[class*="empty-state"],
+.entv-empty {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 3px !important;
+}
+
+/* ================================================================
+   10. MAIN CONTENT — stays light
+   ================================================================ */
+.main-content,
+#main-content {
+    background: #f8fafc;
+}
+
+.top-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* ================================================================
+   11. FLEX LAYOUT — Task #1118896
+   3-column flexbox: sidebar 260px + panel 300px + main flex-1
+   Replaces all fixed/margin-left positioning.
+   ================================================================ */
+
+/* === App Layout Wrapper === */
+#app-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+}
+
+/* === Column 1: Sidebar 260px === */
+.sidebar,
+.os-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
+    flex-shrink: 0 !important;
+    height: 100vh !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: auto !important;
+    z-index: 1000 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* === Column 2: OS Panel 300px (hidden by default, shown on menu click) === */
+.os-panel {
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    flex-shrink: 0 !important;
+    height: 100vh !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: auto !important;
+    transform: none !important;
+    z-index: 999 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    display: none !important;
+    flex-direction: column !important;
+}
+
+/* (removed — panel visibility now controlled by body.os-panel-open in Pennylane Compact patch below) */
+
+/* === Column 3: Main Content === */
+.main-content,
+#main-content {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    margin-left: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Top header & breadcrumb now INSIDE main — static/sticky, not fixed */
+.top-header {
+    position: sticky !important;
+    top: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: 10 !important;
+    width: 100% !important;
+    flex-shrink: 0 !important;
+}
+
+.breadcrumb-bar {
+    position: sticky !important;
+    top: 34px !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: 9 !important;
+    width: 100% !important;
+    flex-shrink: 0 !important;
+}
+
+/* === Neutralize ALL body-class shifting (no longer needed) === */
+body.os-panel-open .main-content,
+body.saisie-panel-open .main-content,
+body.vente-panel-open .main-content {
+    margin-left: 0 !important;
+}
+
+body.os-panel-open .top-header,
+body.os-panel-open .breadcrumb-bar,
+body.saisie-panel-open .top-header,
+body.saisie-panel-open .breadcrumb-bar,
+body.vente-panel-open .top-header,
+body.vente-panel-open .breadcrumb-bar {
+    left: auto !important;
+}
+
+body.os-panel-open #saisie-panel,
+body.os-panel-open #vente-side-panel {
+    left: auto !important;
+}
+
+/* === Table overflow: scroll inside content, never push columns === */
+.listing-card {
+    overflow: visible !important;
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+.table-container,
+.listing-card .table-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+[class*="table-wrap"],
+.saisie-table-wrap,
+.entv-table-wrap,
+.entv-prospects-wrap,
+.ns-table-wrap {
+    overflow-x: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+/* Tables inside main get proper min-width for horizontal scroll */
+.main-content table {
+    min-width: 800px;
+}
+
+/* Body: no horizontal scroll */
+html, body {
+    overflow-x: hidden !important;
+}
+
+/* === Mobile override: hide panel, full-width main === */
+@media (max-width: 768px) {
+    #app-layout {
+        flex-direction: column !important;
+    }
+    .os-sidebar {
+        position: fixed !important;
+        width: 260px !important;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1100 !important;
+    }
+    .os-sidebar.mobile-open {
+        transform: translateX(0) !important;
+    }
+    .os-panel {
+        display: none !important;
+    }
+    .main-content,
+    #main-content {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        margin-left: 0 !important;
+    }
+}
+
+/* =========================================================
+   PATCH DESIGN SYSTEM — STYLE PENNYLANE COMPACT
+   Task #1120443 — Override le style actuel
+========================================================= */
+
+:root {
+  --pl-font: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --pl-sidebar-bg: #111827;
+  --pl-sidebar-bg-2: #172033;
+  --pl-sidebar-text: #dbe3ef;
+  --pl-sidebar-muted: #8b96a8;
+  --pl-sidebar-active-bg: rgba(255,255,255,0.10);
+  --pl-sidebar-hover-bg: rgba(255,255,255,0.07);
+  --pl-panel-bg: #ffffff;
+  --pl-border: #e5e7eb;
+  --pl-border-soft: #eef2f7;
+  --pl-text: #1f2937;
+  --pl-muted: #6b7280;
+  --pl-soft-bg: #f8fafc;
+  --pl-green: #0d9488;
+  --pl-green-soft: #ecfdf5;
+  --pl-blue-soft: #eff6ff;
+  --pl-orange-soft: #fff7ed;
+  --pl-red-soft: #fef2f2;
+}
+
+html, body, button, input, select, textarea, table {
+  font-family: var(--pl-font) !important;
+}
+
+#app-layout {
+  display: flex !important;
+  width: 100% !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  background: #f7f9fb !important;
+}
+
+/* SIDEBAR 188px */
+.os-sidebar {
+  width: 188px !important; min-width: 188px !important; max-width: 188px !important;
+  height: 100vh !important; position: relative !important; flex-shrink: 0 !important;
+  background: linear-gradient(180deg, var(--pl-sidebar-bg) 0%, var(--pl-sidebar-bg-2) 100%) !important;
+  color: var(--pl-sidebar-text) !important; border-right: 0 !important;
+  padding: 6px 6px !important; z-index: 1031 !important; overflow: hidden !important;
+}
+
+.os-sidebar-logo { height: 34px !important; padding: 4px 6px !important; margin-bottom: 6px !important; gap: 7px !important; }
+.os-logo-icon { width: 23px !important; height: 23px !important; border-radius: 50% !important; font-size: 11px !important; font-weight: 600 !important; background: rgba(255,255,255,0.16) !important; color: #ffffff !important; }
+.os-logo-text { font-size: 13px !important; font-weight: 600 !important; color: #ffffff !important; letter-spacing: -0.01em !important; }
+
+.os-sidebar-dossier { margin: 4px 3px 8px !important; padding: 6px 7px !important; border-radius: 6px !important; background: rgba(255,255,255,0.06) !important; border: 1px solid rgba(255,255,255,0.08) !important; }
+.os-sidebar-dossier-label { font-size: 9.5px !important; font-weight: 500 !important; color: var(--pl-sidebar-muted) !important; text-transform: uppercase !important; letter-spacing: 0.04em !important; }
+.os-sidebar-dossier-name { font-size: 12px !important; font-weight: 600 !important; color: #ffffff !important; }
+
+.os-nav-section-title { font-size: 9.5px !important; font-weight: 600 !important; color: var(--pl-sidebar-muted) !important; text-transform: uppercase !important; letter-spacing: 0.045em !important; padding: 8px 8px 4px !important; margin: 0 !important; }
+
+.os-nav-item { height: 30px !important; min-height: 30px !important; width: 100% !important; padding: 0 8px !important; margin: 1px 0 !important; border-radius: 6px !important; border: none !important; background: transparent !important; color: var(--pl-sidebar-text) !important; font-size: 12.5px !important; font-weight: 500 !important; line-height: 1 !important; display: flex !important; align-items: center !important; gap: 8px !important; }
+.os-nav-item:hover { background: var(--pl-sidebar-hover-bg) !important; }
+.os-nav-item.active { background: var(--pl-sidebar-active-bg) !important; color: #ffffff !important; font-weight: 600 !important; }
+.os-nav-item svg { width: 16px !important; height: 16px !important; min-width: 16px !important; color: currentColor !important; stroke-width: 2 !important; }
+.os-nav-item-label { font-size: 12.5px !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+.os-soon-badge { font-size: 9px !important; padding: 1px 4px !important; border-radius: 999px !important; background: rgba(255,255,255,0.12) !important; color: #cbd5e1 !important; }
+
+.os-sidebar-bottom { padding: 6px !important; }
+.os-nav-divider { height: 1px !important; background: rgba(255,255,255,0.08) !important; margin: 6px 0 !important; }
+
+/* PANEL SORTANT 258px */
+.os-panel { width: 258px !important; min-width: 258px !important; max-width: 258px !important; height: 100vh !important; flex-shrink: 0 !important; background: var(--pl-panel-bg) !important; border-right: 1px solid var(--pl-border) !important; box-shadow: 2px 0 8px rgba(15,23,42,0.04) !important; display: none !important; overflow: hidden !important; z-index: 1030 !important; }
+body.os-panel-open .os-panel { display: block !important; }
+.os-panel-content { display: none !important; height: 100% !important; }
+.os-panel-content.active { display: flex !important; flex-direction: column !important; }
+.os-panel-pin-bar { height: 28px !important; padding: 4px 8px !important; border-bottom: 1px solid var(--pl-border-soft) !important; background: #ffffff !important; display: flex !important; justify-content: flex-end !important; }
+.os-panel-pin, .os-panel-close { width: 24px !important; height: 24px !important; border-radius: 5px !important; border: none !important; background: transparent !important; color: #64748b !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important; }
+.os-panel-pin:hover, .os-panel-close:hover { background: #f1f5f9 !important; color: #0f172a !important; }
+.os-panel-close { display: none !important; }
+.os-panel-header { min-height: 38px !important; padding: 7px 10px !important; border-bottom: 1px solid var(--pl-border-soft) !important; display: flex !important; align-items: center !important; justify-content: space-between !important; }
+.os-panel-title { font-size: 13px !important; font-weight: 600 !important; color: var(--pl-text) !important; }
+.os-panel-body { padding: 7px !important; overflow-y: auto !important; flex: 1 !important; }
+.os-panel-section { font-size: 10px !important; font-weight: 600 !important; color: #94a3b8 !important; text-transform: uppercase !important; letter-spacing: 0.045em !important; padding: 8px 8px 4px !important; }
+.os-panel-item { min-height: 29px !important; padding: 0 8px !important; border-radius: 6px !important; font-size: 12.5px !important; font-weight: 500 !important; color: #334155 !important; display: flex !important; align-items: center !important; gap: 8px !important; cursor: pointer !important; }
+.os-panel-item:hover { background: #f8fafc !important; }
+.os-panel-item.entv-active, .os-panel-item.active { background: #ecfdf5 !important; color: #0f766e !important; font-weight: 600 !important; }
+.os-panel-item svg { width: 15px !important; height: 15px !important; min-width: 15px !important; color: currentColor !important; }
+.os-panel-sep { border: 0 !important; border-top: 1px solid var(--pl-border-soft) !important; margin: 7px 0 !important; }
+.os-panel-item-soon { margin-left: auto !important; font-size: 9.5px !important; padding: 1px 5px !important; border-radius: 999px !important; background: #f1f5f9 !important; color: #64748b !important; }
+
+.os-cab-panel-actions { display: flex !important; flex-direction: column !important; gap: 6px !important; padding: 2px 2px 6px !important; }
+.os-cab-panel-action-btn { height: 30px !important; border-radius: 6px !important; border: 1px solid #0d9488 !important; background: #0d9488 !important; color: #ffffff !important; font-size: 12.5px !important; font-weight: 600 !important; cursor: pointer !important; }
+.os-cab-panel-action-btn.secondary { background: #ffffff !important; color: #334155 !important; border-color: #d1d5db !important; }
+
+/* MAIN CONTENT */
+.main-content { flex: 1 1 auto !important; min-width: 0 !important; height: 100vh !important; overflow-y: auto !important; overflow-x: hidden !important; background: #f7f9fb !important; }
+body:not(.os-panel-open) .main-content { margin-left: 0 !important; }
+
+.top-header { height: 46px !important; min-height: 46px !important; border-bottom: 1px solid var(--pl-border) !important; background: #ffffff !important; }
+.cabinet-header-wrap { height: 46px !important; padding: 0 14px !important; }
+.cabinet-header-search-input { height: 30px !important; border-radius: 6px !important; font-size: 12.5px !important; font-weight: 400 !important; }
+.header-user-avatar, .ui-avatar-inner { width: 28px !important; height: 28px !important; font-size: 11px !important; font-weight: 600 !important; }
+
+.breadcrumb-bar { height: 34px !important; min-height: 34px !important; padding: 0 14px !important; border-bottom: 1px solid var(--pl-border-soft) !important; background: #ffffff !important; }
+.breadcrumb-seg, .breadcrumb-sep { font-size: 12px !important; }
+
+/* BOUTONS / FILTRES / TABLES */
+.btn, button, .filter-chip, .listing-filter-btn, .invoice-type-tab, .ff-chip-v2, .dash-period-btn { border-radius: 6px !important; font-family: var(--pl-font) !important; }
+.btn { min-height: 30px !important; padding: 0 10px !important; font-size: 12.5px !important; font-weight: 500 !important; }
+.btn-primary { background: #0d9488 !important; border-color: #0d9488 !important; color: #ffffff !important; }
+.btn-secondary { background: #ffffff !important; border: 1px solid #d1d5db !important; color: #334155 !important; }
+
+.filter-chip, .listing-filter-btn, .invoice-type-tab, .ff-chip-v2 { min-height: 28px !important; padding: 0 9px !important; border-radius: 6px !important; font-size: 12.5px !important; font-weight: 500 !important; border: 1px solid #d1d5db !important; background: #ffffff !important; color: #334155 !important; }
+.filter-chip.active, .listing-filter-btn.active, .invoice-type-tab.active, .ff-chip-v2.active, .ff-chip-v2.active-all { background: #ecfdf5 !important; border-color: #5eead4 !important; color: #0f766e !important; font-weight: 600 !important; }
+
+.listing-search-input, .form-control, .listing-select, .listing-date-input, input, select { min-height: 30px !important; border-radius: 6px !important; font-size: 12.5px !important; border-color: #d1d5db !important; }
+
+.card, .listing-card, .table-card-v2, .chart-card-v2, .kpi-card-v2 { border-radius: 8px !important; border: 1px solid var(--pl-border) !important; box-shadow: none !important; }
+
+.table-container { overflow-x: auto !important; }
+table, .data-table, .table-v2 { font-size: 12.5px !important; border-collapse: collapse !important; }
+table th, .data-table th, .table-v2 th { height: 32px !important; padding: 6px 10px !important; background: #f8fafc !important; border-bottom: 1px solid var(--pl-border) !important; color: #64748b !important; font-size: 11px !important; font-weight: 600 !important; text-transform: uppercase !important; letter-spacing: 0.035em !important; }
+table td, .data-table td, .table-v2 td { min-height: 34px !important; padding: 6px 10px !important; border-bottom: 1px solid #f1f5f9 !important; color: #334155 !important; font-size: 12.5px !important; }
+table tr:hover td, .data-table tr:hover td, .table-v2 tr:hover td { background: #f8fafc !important; }
+
+.badge, .status-badge, .role-badge, .n1-badge { border-radius: 999px !important; font-size: 11px !important; font-weight: 500 !important; padding: 2px 7px !important; }
+
+/* KILL ANCIENS PANELS PARASITES */
+#saisie-panel, #vente-side-panel, #comptabilite-nav-panel, #gestion-nav-panel { display: none !important; }

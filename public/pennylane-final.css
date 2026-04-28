@@ -1,0 +1,894 @@
+/**
+ * HissabPro — Pennylane Final Design System
+ * Task #1118080 — Design system Pennylane final : 2 thèmes sidebar + CSS global compact
+ *
+ * Flat, dense, accounting-style CSS:
+ * - Two sidebar themes (Dossier #0F5757 teal, Cabinet #08234D navy)
+ * - Pixel-perfect global specs
+ * - Zero rounded-xl, zero gros boutons, zero gros cards
+ * - Loaded AFTER all other stylesheets for cascade priority
+ */
+
+/* ========================================================================
+   IMPORT FONT
+   ======================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap');
+
+/* ========================================================================
+   GLOBAL CSS VARIABLES — Pennylane Final
+   ======================================================================== */
+:root {
+  /* Page & Surface */
+  --page-bg: #f8f9fb;
+  --surface-bg: #ffffff;
+
+  /* Borders */
+  --border-main: #d9dee7;
+  --border-light: #e1e5ea;
+
+  /* Text */
+  --text-main: #071a33;
+  --text-dark: #071a33;
+  --muted: #5f6b7a;
+
+  /* Action Colors */
+  --action-teal: #008b91;
+  --purple-action: #7c3aed;
+
+  /* Chip / Badge Colors */
+  --chip-blue-bg: #d7e9ff;
+  --chip-blue-text: #062b5f;
+
+  /* Alert / Status */
+  --orange-alert-bg: #fff3e0;
+  --orange-alert: #e65100;
+  --positive-green: #1fa44a;
+  --negative-red: #dc2626;
+
+  /* Progress */
+  --progress-bg: #d8dde2;
+  --progress-green: #1fa44a;
+
+  /* Row Alternating */
+  --row-alt-bg: #f5f7fa;
+
+  /* Sidebar — default to Dossier (teal) */
+  --sidebar-bg: #0F5757;
+  --sidebar-text: #FFFFFF;
+  --sidebar-active: #0B7F5E;
+  --sidebar-active-border: transparent;
+
+  /* Typography */
+  --font-family: Inter, Arial, system-ui, sans-serif;
+  --font-size-base: 12px;
+  --font-size-title: 22px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+
+  /* Border Radius — compact */
+  --radius: 3px;
+
+  /* Shadows — minimal */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* ========================================================================
+   SIDEBAR THEMES — Toggle via .theme-dossier / .theme-cabinet on body
+   ======================================================================== */
+
+/* Theme 1: Dossier (Teal) — DEFAULT */
+body,
+body.theme-dossier {
+  --sidebar-bg: #0F5757;
+  --sidebar-text: #FFFFFF;
+  --sidebar-active: #0B7F5E;
+}
+
+/* Theme 2: Cabinet (Navy) */
+body.theme-cabinet {
+  --sidebar-bg: #08234D;
+  --sidebar-text: #FFFFFF;
+  --sidebar-active: #5B6984;
+}
+
+/* ========================================================================
+   BASE RESET & BODY
+   ======================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  background: var(--page-bg);
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+/* ========================================================================
+   SIDEBAR — Fully isolated, dedicated classes + neutralizes global styles
+   ======================================================================== */
+
+/* App Shell */
+.app-shell {
+  min-height: 100vh;
+  background: #FAFAFB;
+}
+
+/* Main content — flex child in 3-column layout */
+.main-content,
+#main-content {
+  flex: 1 !important;
+  min-width: 0 !important;
+  background: #FAFAFB;
+  margin-left: 0 !important;
+}
+
+/* ---- Sidebar container ---- */
+.sidebar,
+.os-sidebar {
+  position: sticky !important;
+  top: 0 !important;
+  width: 190px !important;
+  min-width: 190px !important;
+  max-width: 190px !important;
+  flex-shrink: 0 !important;
+  height: 100vh !important;
+  background: var(--sidebar-bg, #0F5757) !important;
+  color: var(--sidebar-text, #FFFFFF) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  z-index: 50 !important;
+  box-sizing: border-box !important;
+}
+
+.sidebar * {
+  box-sizing: border-box !important;
+}
+
+/* ---- Sidebar Header ---- */
+.sidebar-header,
+.os-sidebar-logo {
+  height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  padding: 0 12px !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  background: transparent !important;
+}
+
+.os-logo-text {
+  color: #FFFFFF !important;
+}
+
+.os-logo-icon {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* ---- Sidebar Active Dossier ---- */
+.os-sidebar-dossier {
+  padding: 8px 12px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+.os-sidebar-dossier-label {
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+
+.os-sidebar-dossier-name {
+  color: #FFFFFF !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+/* ---- Sidebar Section Title ---- */
+.os-nav-section-title,
+.sidebar-section-title {
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 18px !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0 !important;
+  background: transparent !important;
+}
+
+/* ---- Sidebar Nav container ---- */
+.os-nav-items,
+.sidebar-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  padding: 0 7px !important;
+  background: transparent !important;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent !important;
+}
+
+.os-nav-items::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---- Sidebar Nav Items (buttons inside nav) ---- */
+.os-nav-item,
+.sidebar-item {
+  width: 100% !important;
+  height: 34px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  padding: 0 8px !important;
+  border: 0 !important;
+  border-radius: 3px !important;
+  background: transparent !important;
+  color: #FFFFFF !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  outline: none !important;
+  line-height: 1 !important;
+  justify-content: flex-start !important;
+}
+
+.os-nav-item svg,
+.sidebar-item svg,
+.os-nav-item i,
+.sidebar-item i {
+  width: 16px !important;
+  height: 16px !important;
+  flex: 0 0 16px !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.os-nav-item span,
+.sidebar-item span {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.os-nav-item:hover,
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+}
+
+.os-nav-item.active,
+.sidebar-item.active {
+  background: var(--sidebar-active) !important;
+  color: #FFFFFF !important;
+  border-radius: 3px !important;
+}
+
+.os-nav-item.active svg,
+.sidebar-item.active svg,
+.os-nav-item.active i,
+.sidebar-item.active i {
+  color: #FFFFFF !important;
+}
+
+/* Soon badge */
+.os-soon-badge {
+  margin-left: auto !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  padding: 1px 5px !important;
+  border-radius: 3px !important;
+}
+
+/* ---- Mode Toggle ---- */
+.os-mode-toggle {
+  display: flex !important;
+  gap: 2px !important;
+  margin: 4px 7px !important;
+  padding: 2px !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 4px !important;
+}
+
+.os-mode-btn {
+  flex: 1 !important;
+  height: 24px !important;
+  border: none !important;
+  border-radius: 3px !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.os-mode-btn:not(.active):hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: #FFFFFF !important;
+}
+
+.os-mode-btn.active {
+  background: var(--sidebar-active) !important;
+  color: #FFFFFF !important;
+}
+
+/* ---- Sidebar bottom section ---- */
+.os-sidebar-bottom {
+  padding: 0 7px 12px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+.os-nav-divider {
+  height: 1px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  margin: 6px 8px !important;
+}
+
+/* ========================================================================
+   CRITICAL: Neutralize global styles that pollute the sidebar
+   Buttons/links inside sidebar must not inherit global button styles
+   ======================================================================== */
+.sidebar button,
+.sidebar a,
+.os-sidebar button,
+.os-sidebar a {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Hide any global card/table/form elements that accidentally appear inside sidebar */
+.sidebar .card,
+.sidebar .panel,
+.sidebar .box,
+.sidebar input,
+.sidebar select,
+.sidebar table,
+.os-sidebar .card,
+.os-sidebar .panel,
+.os-sidebar .box,
+.os-sidebar input,
+.os-sidebar select,
+.os-sidebar table {
+  display: none !important;
+}
+
+/* Theme: Dossier (teal) */
+.theme-dossier .sidebar,
+.theme-dossier .os-sidebar {
+  background: #0F5757 !important;
+}
+
+.theme-dossier .sidebar-item.active,
+.theme-dossier .os-nav-item.active {
+  background: #0B7F5E !important;
+}
+
+/* Theme: Cabinet (navy) */
+.theme-cabinet .sidebar,
+.theme-cabinet .os-sidebar {
+  background: #08234D !important;
+}
+
+.theme-cabinet .sidebar-item.active,
+.theme-cabinet .os-nav-item.active {
+  background: #5B6984 !important;
+}
+
+/* ========================================================================
+   TOPBAR — 34px height, light background
+   ======================================================================== */
+.topbar,
+.os-topbar,
+.top-header {
+  height: 34px !important;
+  background: var(--page-bg) !important;
+  border-bottom: 1px solid var(--border-main) !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 20px !important;
+}
+
+/* ========================================================================
+   PAGE HEADER — 14px padding, title/subtitle
+   ======================================================================== */
+.page-header,
+.page-title-section {
+  padding: 14px 20px !important;
+  background: var(--page-bg) !important;
+  border-bottom: 1px solid var(--border-main) !important;
+}
+
+.page-title {
+  font-size: var(--font-size-title) !important;
+  font-weight: var(--font-weight-bold) !important;
+  color: var(--text-main) !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.page-subtitle {
+  font-size: var(--font-size-base) !important;
+  color: var(--text-main) !important;
+  margin: 4px 0 0 0 !important;
+}
+
+/* ========================================================================
+   TOOLBAR — 52px height, light background, 8px gap
+   ======================================================================== */
+.toolbar,
+.pl-toolbar,
+[class*="toolbar"] {
+  height: 52px !important;
+  background: var(--surface-bg) !important;
+  gap: 8px !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  border-bottom: 1px solid var(--border-main) !important;
+}
+
+/* ========================================================================
+   BUTTONS — 24px height, 3px radius, 12px text, 600 weight
+   ======================================================================== */
+.btn,
+.pl-btn,
+button,
+input[type="button"],
+input[type="submit"] {
+  height: 24px !important;
+  border: 1px solid var(--border-main) !important;
+  border-radius: var(--radius) !important;
+  padding: 0 8px !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: var(--font-weight-medium) !important;
+  background: #FFFFFF !important;
+  color: var(--text-dark) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  transition: all 150ms ease-out !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+.btn:hover,
+.pl-btn:hover,
+button:hover {
+  background: #f8fafc !important;
+  border-color: #b0bac8 !important;
+}
+
+/* Button Variant — Teal border + text */
+.btn-teal,
+.button-teal {
+  border-color: var(--action-teal) !important;
+  color: var(--action-teal) !important;
+}
+
+.btn-teal:hover {
+  background: #f0fdfa !important;
+}
+
+/* Button Variant — Primary teal (filled) */
+.btn-primary-teal,
+.button-primary-teal {
+  background: var(--action-teal) !important;
+  border-color: var(--action-teal) !important;
+  color: #FFFFFF !important;
+}
+
+.btn-primary-teal:hover {
+  background: #006d73 !important;
+}
+
+/* Button Variant — Purple */
+.btn-purple,
+.button-purple {
+  background: var(--purple-action) !important;
+  border-color: var(--purple-action) !important;
+  color: #FFFFFF !important;
+}
+
+.btn-purple:hover {
+  background: #6d28d9 !important;
+}
+
+/* ========================================================================
+   TABLES — 30px headers, 31px rows, fixed layout
+   ======================================================================== */
+table,
+.table,
+.pl-table {
+  width: 100% !important;
+  table-layout: fixed !important;
+  background: var(--surface-bg) !important;
+  border-collapse: collapse !important;
+}
+
+/* Table Headers — 30px height, 11px text, 700 weight */
+thead th,
+.table th,
+.pl-table th {
+  height: 30px !important;
+  padding: 0 10px !important;
+  border-bottom: 1px solid var(--border-main) !important;
+  font-size: 11px !important;
+  font-weight: var(--font-weight-bold) !important;
+  background: var(--page-bg) !important;
+  text-align: left !important;
+  color: var(--muted) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Table Cells — 31px height, 13px text */
+tbody td,
+.table td,
+.pl-table td {
+  height: 31px !important;
+  padding: 0 10px !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  font-size: 13px !important;
+  color: var(--text-main) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  vertical-align: middle !important;
+}
+
+/* Alternate Row Background */
+tbody tr:nth-child(even),
+.table tbody tr:nth-child(even) {
+  background: var(--row-alt-bg) !important;
+}
+
+/* ========================================================================
+   BADGES / CHIPS
+   ======================================================================== */
+.chip-blue,
+.badge-blue {
+  background: var(--chip-blue-bg) !important;
+  color: var(--chip-blue-text) !important;
+  border-radius: var(--radius) !important;
+  padding: 3px 7px !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-size: 11px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+
+.alert-cell {
+  background: var(--orange-alert-bg) !important;
+  color: var(--orange-alert) !important;
+}
+
+.positive {
+  color: var(--positive-green) !important;
+}
+
+.negative {
+  color: var(--negative-red) !important;
+}
+
+/* Generic status badge */
+.status,
+.badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  border-radius: 4px !important;
+  padding: 3px 7px !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-size: 11px !important;
+  white-space: nowrap !important;
+  background: var(--chip-blue-bg) !important;
+  color: var(--chip-blue-text) !important;
+  border: none !important;
+}
+
+/* ========================================================================
+   PROGRESS BARS — 152px width, 11px height, 999px radius
+   ======================================================================== */
+.progress,
+.progress-bar,
+[class*="progress-wrap"] {
+  width: 152px !important;
+  height: 11px !important;
+  background: var(--progress-bg) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  display: inline-block !important;
+}
+
+.progress-fill,
+.progress-bar-fill {
+  height: 100% !important;
+  background: var(--progress-green) !important;
+  border-radius: 999px !important;
+  transition: width 300ms ease !important;
+}
+
+/* ========================================================================
+   AVATARS — 22px × 22px, 50% radius, -6px overlap
+   ======================================================================== */
+.avatar,
+.pl-avatar {
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 50% !important;
+  font-size: 11px !important;
+  font-weight: var(--font-weight-bold) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #FFFFFF !important;
+  flex-shrink: 0 !important;
+}
+
+.avatar + .avatar,
+.pl-avatar + .pl-avatar {
+  margin-left: -6px !important;
+}
+
+/* Avatar color variants */
+.avatar-purple, .pl-avatar-purple { background: #A88BE5 !important; }
+.avatar-red, .pl-avatar-red       { background: #E05A6E !important; }
+.avatar-blue, .pl-avatar-blue     { background: #498FFF !important; }
+.avatar-teal, .pl-avatar-teal     { background: #2F8485 !important; }
+.avatar-orange, .pl-avatar-orange { background: #FABA74 !important; }
+
+/* ========================================================================
+   CARDS / KPI — 3px radius, compact padding, minimal shadow
+   ======================================================================== */
+.card,
+.pl-card,
+.kpi-card,
+[class*="card"] {
+  border-radius: var(--radius) !important;
+  padding: 12px !important;
+  box-shadow: var(--shadow-sm) !important;
+  border: 1px solid var(--border-light) !important;
+  background: var(--surface-bg) !important;
+}
+
+/* ========================================================================
+   SEARCH INPUT — 24px height, 225px width, 3px radius
+   ======================================================================== */
+.search,
+.pl-search,
+input[type="search"] {
+  height: 24px !important;
+  width: 225px !important;
+  border: 1px solid var(--border-main) !important;
+  border-radius: var(--radius) !important;
+  padding: 0 9px !important;
+  font-size: var(--font-size-base) !important;
+  background: var(--surface-bg) !important;
+  color: var(--text-main) !important;
+  outline: none !important;
+  font-family: var(--font-family) !important;
+  transition: border-color 150ms ease-out !important;
+}
+
+.search:focus,
+.pl-search:focus {
+  border-color: var(--action-teal) !important;
+  box-shadow: 0 0 0 2px rgba(0, 139, 145, 0.15) !important;
+}
+
+.search::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* ========================================================================
+   INPUTS / SELECTS — 24px height standard
+   ======================================================================== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+  height: 24px !important;
+  border: 1px solid var(--border-main) !important;
+  border-radius: var(--radius) !important;
+  padding: 0 8px !important;
+  font-size: var(--font-size-base) !important;
+  background: var(--surface-bg) !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-family) !important;
+  outline: none !important;
+  transition: border-color 150ms ease-out !important;
+}
+
+textarea {
+  height: auto !important;
+  padding: 6px 8px !important;
+  min-height: 60px !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--action-teal) !important;
+  box-shadow: 0 0 0 2px rgba(0, 139, 145, 0.15) !important;
+}
+
+/* ========================================================================
+   GENERAL FORM ELEMENTS
+   ======================================================================== */
+label {
+  font-size: var(--font-size-base) !important;
+  font-weight: var(--font-weight-medium) !important;
+  color: var(--text-main) !important;
+  display: block !important;
+  margin-bottom: 4px !important;
+}
+
+/* ========================================================================
+   REMOVE ALL LEGACY ROUNDED SIZES
+   ======================================================================== */
+.rounded-xl,
+.rounded-lg,
+.rounded-md,
+.rounded-sm {
+  border-radius: var(--radius) !important;
+}
+
+/* ========================================================================
+   REMOVE ALL LARGE BUTTON SIZES (h-10, h-8)
+   ======================================================================== */
+.h-10, .h-8, .py-3, .py-2 {
+  height: auto !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Restore buttons to 24px */
+button.h-10,
+button.h-8,
+.btn.h-10,
+.btn.h-8 {
+  height: 24px !important;
+  padding: 0 8px !important;
+}
+
+/* ========================================================================
+   SHADOW CLEANUP — remove extra shadows
+   ========================================================================*/
+.shadow-md,
+.shadow-lg,
+.shadow-xl {
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* ========================================================================
+   TEXT & TYPOGRAPHY
+   ======================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family) !important;
+  color: var(--text-main) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+h1 { font-size: var(--font-size-title) !important; font-weight: 600 !important; }
+h2 { font-size: 18px !important; font-weight: 600 !important; }
+h3 { font-size: 15px !important; font-weight: 600 !important; }
+h4 { font-size: var(--font-size-base) !important; font-weight: 600 !important; }
+
+p {
+  font-size: var(--font-size-base) !important;
+  color: var(--text-main) !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+/* ========================================================================
+   RESPONSIVE — Mobile table scroll
+   ======================================================================== */
+@media (max-width: 768px) {
+  .table-container,
+  .table-wrap,
+  [class*="table-wrap"] {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .sidebar,
+  .os-sidebar {
+    width: 190px !important;
+  }
+}
+
+/* ========================================================================
+   ACCESSIBILITY — Focus states
+   ======================================================================== */
+:focus-visible {
+  outline: 2px solid var(--action-teal) !important;
+  outline-offset: 2px !important;
+}
+
+/* ========================================================================
+   QA FIX — Override conflicts from navy-override.css (loads after this file)
+   and entreprises-views.css. Must use !important to win cascade battles.
+   ======================================================================== */
+
+/* MAJEURE 2: Badge/chip border-radius → 4px (compact), not 9999px (pill) */
+/* navy-override.css lines 183, 202, 215 force 9999px — override here */
+/* Also enp-badge from entreprises-views.css */
+.status,
+.badge,
+.status-pill,
+.os-soon-badge,
+.os-badge,
+.enp-badge,
+.enp-badge-blue {
+  border-radius: 4px !important;
+}
+
+/* MAJEURE 3: Badge text color → charter navy #062b5f, not Tailwind blue */
+/* navy-override.css line 191 uses #1d4ed8 — override here */
+/* Also enp-badge-blue from entreprises-views.css uses #2563eb */
+.status,
+.badge,
+.badge-sent,
+.status-pill-sent,
+.status-pill-validated,
+.status-pill-pre_traitee,
+.enp-badge-blue {
+  color: #062b5f !important;
+}
+
+/* MAJEURE 1: Sidebar nav items — enforce exactly 34px, block any min-height override */
+.os-nav-item,
+.sidebar-item {
+  height: 34px !important;
+  min-height: 34px !important;
+  max-height: 34px !important;
+}
+
+/* MINEURE: Sidebar section titles → charter blue #A4C7FF, not rgba white */
+.os-nav-section-title,
+.sidebar-section-title {
+  color: #A4C7FF !important;
+}
+
+/* ========================================================================
+   PRINT STYLES — Ensure readability
+   ======================================================================== */
+@media print {
+  body {
+    background: #FFFFFF !important;
+  }
+
+  .sidebar,
+  .topbar,
+  .toolbar,
+  [class*="hide-on-print"] {
+    display: none !important;
+  }
+}

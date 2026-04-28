@@ -1,0 +1,134 @@
+/**
+ * HissabPro Design System — Navy Tokens
+ * Pennylane Navy: dense, professional, navy sidebar
+ *
+ * Import this file in all pages:
+ *   <link rel="stylesheet" href="/design-tokens.css">
+ */
+
+/* ── Inter Font ──────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap');
+
+/* ── CSS Custom Properties ───────────────────────────────────── */
+:root {
+    /* ── Navy Palette (brand) ── */
+    --navy:              #082a55;
+    --navy-dark:         #05234a;
+    --sidebar-active:    #7587a3;
+
+    /* ── Page & Surface ── */
+    --page-bg:           #f8f9fb;
+    --surface:           #ffffff;
+
+    /* ── Borders ── */
+    --border:            #d9dee7;
+    --border-light:      #e1e5ea;
+
+    /* ── Text ── */
+    --text:              #071a33;
+    --muted:             #5f6b7a;
+
+    /* ── Accent / Teal ── */
+    --teal:              #008b91;
+
+    /* ── Status ── */
+    --badge-blue:        #d7e9ff;
+    --badge-blue-text:   #062b5f;
+    --green:             #1fa44a;
+    --green-soft:        #a9ddbb;
+    --progress-bg:       #d8dde2;
+
+    /* ── Primary color aliases (mapped to navy for interactive elements) ── */
+    --color-primary:        var(--teal);
+    --color-primary-hover:  #006d73;
+    --color-primary-light:  #c3e8ea;
+    --color-primary-subtle: #eaf6f7;
+
+    /* ── Text aliases ── */
+    --color-text-heading:     var(--text);
+    --color-text-body:        var(--text);
+    --color-text-secondary:   var(--muted);
+    --color-text-placeholder: #94a3b8;
+
+    /* ── Background aliases ── */
+    --color-bg-white:  var(--surface);
+    --color-bg-page:   var(--page-bg);
+    --color-bg-hover:  #f0f2f5;
+    --color-bg-subtle: var(--page-bg);
+
+    /* ── Border aliases ── */
+    --color-border:       var(--border);
+    --color-border-input: #c9d1dd;
+
+    /* ── Status / semantic ── */
+    --color-success:       var(--green);
+    --color-success-light: #eaf7ee;
+    --color-warning:       #d97706;
+    --color-warning-light: #fffbeb;
+    --color-error:         #dc2626;
+    --color-error-light:   #fef2f2;
+    --color-info:          #2563eb;
+    --color-info-light:    #eff6ff;
+
+    /* ── Sidebar ── */
+    --sidebar-width:            260px;
+    --sidebar-bg:               var(--navy);
+    --sidebar-border:           transparent;
+    --sidebar-item-inactive:    rgba(255,255,255,0.75);
+    --sidebar-item-hover-bg:    rgba(255,255,255,0.10);
+    --sidebar-item-active-bg:   var(--sidebar-active);
+    --sidebar-item-active-text: #ffffff;
+
+    /* ── Typography ── */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --text-xs:   11px;
+    --text-sm:   12px;
+    --text-base: 13px;
+    --text-lg:   14px;
+    --text-xl:   16px;
+    --text-2xl:  22px;
+
+    /* ── Border Radius (Compact) ── */
+    --radius-sm:  3px;
+    --radius-md:  3px;
+    --radius-lg:  4px;
+    --radius-xl:  6px;
+
+    /* ── Shadows ── */
+    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.04);
+    --shadow-md: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-lg: 0 2px 6px rgba(0,0,0,0.08);
+    --shadow-xl: 0 4px 12px rgba(0,0,0,0.10);
+
+    /* ── Focus rings ── */
+    --ring-primary: 0 0 0 2px rgba(0, 139, 145, 0.20);
+    --ring-error:   0 0 0 2px rgba(220, 38, 38, 0.20);
+
+    /* ── Transitions ── */
+    --transition-fast:   150ms ease-out;
+    --transition-normal: 200ms ease;
+
+    /* ── Legacy aliases (backward compat) ── */
+    --emerald:       var(--teal);
+    --emerald-light: #00a8af;
+    --emerald-dark:  #006d73;
+    --charcoal:      var(--text);
+    --slate:         #374151;
+    --gold:          #d4a843;
+    --white:         #ffffff;
+    --sand:          var(--page-bg);
+    --sand-dark:     #eef0f3;
+    --danger:        #dc2626;
+    --danger-light:  #fef2f2;
+    --warning:       #d97706;
+    --warning-light: #fffbeb;
+    --info:          #2563eb;
+    --info-light:    #eff6ff;
+    --success:       var(--green);
+    --success-light: #eaf7ee;
+}
+
+/* ── Base Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+}

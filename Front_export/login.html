@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>/* CSRF: auto-inject X-Requested-With on all /api fetch calls */(function(){var f=window.fetch;window.fetch=function(u,o){o=o||{};if(typeof u==='string'&&u.indexOf('/api')===0){o.headers=o.headers||{};if(o.headers instanceof Headers){o.headers.set('X-Requested-With','XMLHttpRequest');}else{o.headers['X-Requested-With']='XMLHttpRequest';}}return f.call(this,u,o);};})();</script>
+    <title>HissabPro — Connexion | Logiciel Comptabilite Cloud Maroc</title>
+    <meta name="description" content="Connectez-vous a HissabPro, votre logiciel de comptabilite cloud pour PME marocaines. Conforme au Plan Comptable Marocain (PCM). Acces rapide et securise.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://hissabpro.polsia.app/login">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HissabPro — Connexion">
+    <meta property="og:description" content="Connectez-vous a HissabPro, votre logiciel de comptabilite cloud pour PME marocaines.">
+    <meta property="og:url" content="https://hissabpro.polsia.app/login">
+    <meta property="og:site_name" content="HissabPro">
+    <meta property="og:locale" content="fr_MA">
+    <meta property="og:image" content="https://hissabpro.polsia.app/logo.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HissabPro — Connexion">
+    <meta name="twitter:description" content="Connectez-vous a HissabPro, votre logiciel de comptabilite cloud pour PME marocaines.">
+    <meta name="twitter:image" content="https://hissabpro.polsia.app/logo.svg">
+    <link rel="stylesheet" href="/design-tokens.css">
+    <link rel="stylesheet" href="/forms-modals.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --emerald: #0d9488;
+            --emerald-light: #14b8a6;
+            --emerald-dark: #0f766e;
+            --sand: #f8fafc;
+            --sand-dark: #f1f5f9;
+            --charcoal: #0f172a;
+            --slate: #334155;
+            --muted: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --danger: #dc2626;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--charcoal);
+            background: var(--sand);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-logo a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+
+        .auth-logo .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--emerald), var(--emerald-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .auth-logo .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+        }
+
+        .auth-logo .logo-text span {
+            color: var(--emerald);
+        }
+
+        .auth-card {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            padding: 2.5rem;
+        }
+
+        .auth-card h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: var(--charcoal);
+        }
+
+        .auth-card .subtitle {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--slate);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1px solid var(--color-border-input, #cbd5e1);
+            border-radius: var(--radius-md, 6px);
+            font-size: 0.92rem;
+            font-family: 'Inter', sans-serif;
+            color: var(--charcoal);
+            background: var(--white);
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary, #0d9488);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: var(--color-text-placeholder, #94a3b8);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: var(--radius-md, 6px);
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            background: var(--color-primary, #0d9488);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            margin-top: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-hover, #0f766e);
+            box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .error-message {
+            background: #fef2f2;
+            color: var(--danger);
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            font-size: 0.84rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: none;
+            border: 1px solid #fecaca;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+
+        .auth-switch a {
+            color: var(--emerald);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        .tab-group {
+            display: flex;
+            background: var(--sand);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            color: var(--muted);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--white);
+            color: var(--charcoal);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.82rem;
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: var(--emerald);
+        }
+
+        .password-hint {
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-logo">
+            <a href="/">
+                <div class="logo-icon">H</div>
+                <span class="logo-text">Hissab<span>Pro</span></span>
+            </a>
+        </div>
+
+        <div class="auth-card">
+            <div class="tab-group">
+                <button class="tab-btn active" onclick="switchTab('login')">Connexion</button>
+                <button class="tab-btn" onclick="switchTab('signup')">Inscription</button>
+            </div>
+
+            <div id="error-msg" class="error-message"></div>
+
+            <!-- LOGIN FORM -->
+            <div id="form-login" class="form-section active">
+                <h1>Bon retour</h1>
+                <p class="subtitle">Connectez-vous pour acceder a votre comptabilite</p>
+
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">Adresse email</label>
+                        <input type="email" id="login-email" class="form-control" placeholder="vous@entreprise.ma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Mot de passe</label>
+                        <input type="password" id="login-password" class="form-control" placeholder="Votre mot de passe" required>
+                    </div>
+                    <button type="submit" class="btn-primary" id="login-btn">Se connecter</button>
+                </form>
+            </div>
+
+            <!-- SIGNUP FORM -->
+            <div id="form-signup" class="form-section">
+                <h1>Creer un compte</h1>
+                <p class="subtitle">Gerez votre comptabilite marocaine en ligne</p>
+
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signup-name">Nom complet</label>
+                        <input type="text" id="signup-name" class="form-control" placeholder="Ahmed Bennani">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Adresse email</label>
+                        <input type="email" id="signup-email" class="form-control" placeholder="vous@entreprise.ma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Mot de passe</label>
+                        <input type="password" id="signup-password" class="form-control" placeholder="Minimum 6 caracteres" required minlength="6">
+                        <p class="password-hint">Minimum 6 caracteres</p>
+                    </div>
+                    <button type="submit" class="btn-primary" id="signup-btn">Creer mon compte</button>
+                </form>
+            </div>
+        </div>
+
+        <a href="/" class="back-link">&larr; Retour au site</a>
+    </div>
+
+    <script>
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+            btn.classList.toggle('active', (tab === 'login' && i === 0) || (tab === 'signup' && i === 1));
+        });
+        document.getElementById('form-login').classList.toggle('active', tab === 'login');
+        document.getElementById('form-signup').classList.toggle('active', tab === 'signup');
+        hideError();
+    }
+
+    function showError(msg) {
+        const el = document.getElementById('error-msg');
+        el.textContent = msg;
+        el.classList.add('show');
+    }
+
+    function hideError() {
+        document.getElementById('error-msg').classList.remove('show');
+    }
+
+    async function handleLogin(e) {
+        e.preventDefault();
+        hideError();
+        const btn = document.getElementById('login-btn');
+        btn.disabled = true;
+        btn.textContent = 'Connexion...';
+
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: document.getElementById('login-email').value.trim(),
+                    password: document.getElementById('login-password').value
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                showError(data.error || 'Erreur de connexion');
+                btn.disabled = false;
+                btn.textContent = 'Se connecter';
+                return;
+            }
+
+            // Redirect based on onboarding status
+            window.location.href = data.user && data.user.onboarding_completed === false ? '/onboarding' : '/app';
+        } catch (err) {
+            showError('Erreur de connexion au serveur');
+            btn.disabled = false;
+            btn.textContent = 'Se connecter';
+        }
+    }
+
+    async function handleSignup(e) {
+        e.preventDefault();
+        hideError();
+        const btn = document.getElementById('signup-btn');
+        btn.disabled = true;
+        btn.textContent = 'Creation...';
+
+        const password = document.getElementById('signup-password').value;
+        if (password.length < 6) {
+            showError('Le mot de passe doit contenir au moins 6 caracteres');
+            btn.disabled = false;
+            btn.textContent = 'Creer mon compte';
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/auth/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: document.getElementById('signup-name').value.trim(),
+                    email: document.getElementById('signup-email').value.trim(),
+                    password: password
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                showError(data.error || 'Erreur d\'inscription');
+                btn.disabled = false;
+                btn.textContent = 'Creer mon compte';
+                return;
+            }
+
+            // New users always go to onboarding
+            window.location.href = '/onboarding';
+        } catch (err) {
+            showError('Erreur de connexion au serveur');
+            btn.disabled = false;
+            btn.textContent = 'Creer mon compte';
+        }
+    }
+
+    // If already logged in, redirect appropriately
+    fetch('/api/auth/me')
+        .then(r => r.ok ? r.json() : null)
+        .then(data => {
+            if (!data) return;
+            window.location.href = data.user && data.user.onboarding_completed === false ? '/onboarding' : '/app';
+        })
+        .catch(() => {});
+
+    // Check URL params for tab
+    if (window.location.search.includes('tab=signup')) {
+        switchTab('signup');
+    }
+    </script>
+</body>
+</html>
